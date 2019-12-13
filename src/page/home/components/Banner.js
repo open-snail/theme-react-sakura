@@ -5,7 +5,7 @@ class Banner extends Component{
     render() {
         return(
             <BannerWrapper>
-                <Center style={{backgroundImage:this.getBanner()}}>1</Center>
+                <Center style={{backgroundImage:this.getBanner()}}>banner</Center>
             </BannerWrapper>
         )
     }
