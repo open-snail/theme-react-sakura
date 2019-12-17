@@ -23,7 +23,7 @@ class Header extends Component {
                             <NavItem><Link to={'/index'} className='nav-item'>首页</Link></NavItem>
                             <NavItem id='area'>
                                 <Dropdown
-                                    overlay={this.getCategory()}
+                                    overlay={this.Category()}
                                     placement="bottomCenter"
                                     getPopupContainer={() => document.getElementById('area')}
                                     overlayClassName='NavDropdown'
@@ -44,7 +44,7 @@ class Header extends Component {
         )
     }
 
-    getCategory() {
+    Category() {
         const {category} = this.props;
         const list = category.toJS();
         return (

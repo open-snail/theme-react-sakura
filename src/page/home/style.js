@@ -18,6 +18,14 @@ export const BannerWrapper = styled.div`
     }
 `;
 
+export const BannerWaveOne = styled.div`
+    
+`;
+
+export const BannerWaveTwo = styled.div`
+    
+`;
+
 export const Center = styled.div`
     width: 100%;
     height: 550px;
@@ -240,4 +248,12 @@ export const Focusinfo = styled.div`
         transform: scaleX(-1);
         filter: FlipH;
     }
+`;
+
+export const HomeWrapper = styled.div`
+
+`;
+
+export const MainWrapper = styled.div`
+
 `;

@@ -1,10 +1,26 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 import Banner from "./components/Banner";
-class Home extends Component {
+import List from './components/List';
+import {HomeWrapper,MainWrapper} from './style';
+
+class Home extends PureComponent {
     render() {
         return (
-            <Banner/>
+            <HomeWrapper>
+                <Banner/>
+                <MainWrapper>
+                    <List/>
+                </MainWrapper>
+            </HomeWrapper>
         )
     }
 }
-export default Home;
+const mapState = (state) => ({
+
+});
+
+const mapDispatch = (dispatch) => ({
+
+});
+export default connect(mapState, mapDispatch)(Home);

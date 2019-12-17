@@ -1,39 +1,31 @@
-import axios from 'axios';
+// import axios from 'axios';
 import * as constants from './constants';
 import {fromJS} from 'immutable';
 
-const changHomeData = (result) => ({
-    type: constants.CHANGE_HOME_DATA,
-    topicList: result.topicList,
-    articleList: result.articleList,
-    recommendList: result.recommendList
+const setBanner = (data) => ({
+    type: constants.GET_BANNER,
+    data: fromJS(data),
 });
 
-const addHomeList = (list, nextPage) => ({
-    type: constants.ADD_ARTICLE_LIST,
-    list: fromJS(list),
-    nextPage
-});
-
-export const getHomeInfo = () => {
+export const getBanner = () => {
     return (dispatch) => {
-        axios.get('/api/home.json').then((res) => {
-            const result = res.data;
-            dispatch(changHomeData(result));
-        });
+        // axios.get('/category/category/v1/list').then((res) => {
+        //     if(res.success===1){
+        //         dispatch(setBanner(res.models));
+        //     }
+        // })
+        const bannerList = [
+            {img: require('../../../statics/images/BG-001.jpg')},
+            {img: require('../../../statics/images/BG-002.jpg')}
+        ];
+        dispatch(setBanner(bannerList));
     }
 };
 
-export const getMoreList = (page) => {
-    return (dispatch) => {
-        axios.get('/api/homeList.json?page=' + page).then((res) => {
-            const result = res.data;
-            dispatch(addHomeList(result, page + 1));
-        });
-    }
-};
+export const changehBanner = () => ({
+    type: constants.CHANGE_BANNER,
+});
 
-export const toggleTopShow = (show) => ({
-    type: constants.TOGGLE_SCROLL_TOP,
-    show
+export const changeInnerHeight = () =>({
+    type: constants.CHANGE_INNERHEIGHT,
 });

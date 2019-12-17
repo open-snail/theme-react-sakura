@@ -1,38 +1,46 @@
-import { fromJS } from 'immutable';
+import {fromJS} from 'immutable';
 import * as constants from './constants';
 
 const defaultState = fromJS({
-	topicList: [],
-	articleList: [],
-	recommendList: [],
-	articlePage: 1,
-	showScroll: false
+    bannerList: [],
+    banner: '',
+    innerHeight:window.innerHeight
 });
 
-const changeHomeData = (state, action) => {
-	return state.merge({
-		topicList: fromJS(action.topicList),
-		articleList: fromJS(action.articleList),
-		recommendList: fromJS(action.recommendList)
-	});
+const setBanner = (state, action) => {
+    const banner = action.data.toJS();
+    const num = getrand(0, banner.length - 1);
+    return state.merge({
+        bannerList: action.data,
+        banner: banner.length ? 'url(' + banner[num].img + ')' : ''
+    })
 };
 
-const addArticleList = (state, action) => {
-	return state.merge({
-		articleList: state.get('articleList').concat(action.list),
-		articlePage: action.nextPage
-	});
+const getrand = (m, n) => {
+    return Math.floor(Math.random() * (n - m + 1)) + m;
+};
+
+const changeBanner = (state) => {
+    const banner = state.get('bannerList').toJS();
+    const num = getrand(0, banner.length - 1);
+    return state.merge({
+        banner: banner.length ? 'url(' + banner[num].img + ')' : ''
+    })
+};
+
+const changeInnerHeight = (state) =>{
+    return state.set('innerHeight',window.innerHeight);
 };
 
 export default (state = defaultState, action) => {
-	switch(action.type) {
-		case constants.CHANGE_HOME_DATA:
-			return changeHomeData(state, action);
-		case constants.ADD_ARTICLE_LIST:
-			return addArticleList(state, action);
-		case constants.TOGGLE_SCROLL_TOP:
-			return state.set('showScroll', action.show);
-		default:
-			return state;
-	}
+    switch (action.type) {
+        case constants.GET_BANNER:
+            return setBanner(state, action);
+        case constants.CHANGE_BANNER:
+            return changeBanner(state);
+        case constants.CHANGE_INNERHEIGHT:
+            return changeInnerHeight(state, action);
+        default:
+            return state;
+    }
 }
