@@ -49,10 +49,12 @@ export const GlobalStyle = createGlobalStyle`
 		content: '';
 		content: none;
 	}
+	
 	table {
 		border-collapse: collapse;
 		border-spacing: 0;
 	}
+	
 	.flex-items {
         display: -webkit-flex; /* Safari */
         -webkit-align-items: center; /* Safari 7.0+ */

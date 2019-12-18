@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
+export const Headers = styled.div`
+    .ant-affix{
+        z-index: 999;
+        .nav-wrapper{
+            background: rgba(255,255,255,.95);
+            box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
+        }
+    } 
+    // &:hover .nav-wrapper{
+    //     background: rgba(255,255,255,.95);
+    //     box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
+    // }
+`;
+
 export const NavWrapper = styled.div`
     width: 100%;
     height: 75px;
     position:fixed;
     top:0;
     padding:0 30px
-    background: rgba(255,255,255,.95);
-    box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
     z-index:999;
 `;
 
@@ -43,6 +55,9 @@ export const NavItem = styled.li`
         height:40px;
         line-height:40px;
         position: relative;
+    }
+    .nav-item i{
+        margin-right:5px;
     }
     .nav-item:after{
         content: "";

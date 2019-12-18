@@ -2,7 +2,8 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import Banner from "./components/Banner";
 import List from './components/List';
-import {HomeWrapper,MainWrapper} from './style';
+import Feature from "./components/Feature";
+import {HomeWrapper, MainWrapper} from './style';
 
 class Home extends PureComponent {
     render() {
@@ -10,17 +11,25 @@ class Home extends PureComponent {
             <HomeWrapper>
                 <Banner/>
                 <MainWrapper>
-                    <List/>
+                    <div className='container'>
+                        <Feature/>
+                        <List/>
+                    </div>
                 </MainWrapper>
             </HomeWrapper>
         )
     }
 }
-const mapState = (state) => ({
 
-});
+const mapState = (state) => {
+    return{
 
-const mapDispatch = (dispatch) => ({
+    }
+};
 
-});
+const mapDispatch = (dispatch) => {
+    return{
+
+    }
+};
 export default connect(mapState, mapDispatch)(Home);
