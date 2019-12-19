@@ -11,10 +11,8 @@ class Home extends PureComponent {
             <HomeWrapper>
                 <Banner/>
                 <MainWrapper>
-                    <div className='container'>
-                        <Feature/>
-                        <List/>
-                    </div>
+                    <Feature/>
+                    <List/>
                 </MainWrapper>
             </HomeWrapper>
         )

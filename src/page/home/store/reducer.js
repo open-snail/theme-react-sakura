@@ -7,7 +7,9 @@ const defaultState = fromJS({
     innerHeight: window.innerHeight,
     featureList: [],
     blogList: [],
-    thumbList: []
+    articlePage: 1,
+    thumbList: [],
+    finished: false
 });
 
 const setBanner = (state, action) => {
@@ -41,9 +43,32 @@ const setFeature = (state, action) => {
     })
 };
 
+const thumbImg = (thumbList, data) => {
+    const list = data.toJS();
+    const Img = thumbList.toJS();
+    let arr = [];
+    for (let i = 0; i < list.length; i++) {
+        arr.push({
+            id: list[i].id,
+            title: list[i].title,
+            thumbnail: list[i].thumbnail || Img[getrand(0, Img.length - 1)].img,
+            comments: list[i].comments,
+            status: list[i].status,
+            summary: list[i].summary,
+            views: list[i].views,
+            createTime: list[i].createTime,
+            syncStatus: list[i].syncStatus,
+            author: list[i].author,
+        })
+    }
+    return arr
+};
+
 const setBlogList = (state, action) => {
+    const arr = thumbImg(state.get('thumbList'), action.data);
     return state.merge({
-        blogList: action.data
+        blogList: state.get('blogList').concat(arr),
+        articlePage: action.nextPage
     })
 };
 
@@ -67,6 +92,8 @@ export default (state = defaultState, action) => {
             return setBlogList(state, action);
         case constants.RANDOW_THUMB:
             return setRandomThumb(state, action);
+        case constants.SET_FINISHED:
+            return state.set('finished', true);
         default:
             return state;
     }

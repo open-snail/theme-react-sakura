@@ -1,37 +1,82 @@
 import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {FeatureTitle, HomeList, BlogList} from "../style";
+import {FeatureTitle, HomeList, BlogList, PagInation} from "../style";
 import {actionCreators} from "../store";
 
 class List extends PureComponent {
     render() {
+        const {page, finished} = this.props;
         return (
             <HomeList>
                 <FeatureTitle>
                     <h1><i className='iconfont icon-envira'/><span> Discovery</span></h1>
                 </FeatureTitle>
                 {this.BlogList()}
+                <PagInation>
+                    {this.PagInation(page, finished)}
+                </PagInation>
             </HomeList>
         )
+    }
+
+    PagInation(page, finished) {
+        if (finished) {
+            return (
+                <p>很高兴你翻到这里，但是真的没有了...</p>
+            )
+        } else {
+            return (
+                <div onClick={() => this.props.getBlogList(page, finished)} className='btn'>Previous</div>
+            )
+        }
     }
 
     BlogList() {
         const {blogList} = this.props;
         const list = blogList.toJS();
-        console.log(list);
+        const Class = ['blog-item post-list-show left', 'blog-item post-list-show right'];
         return (
             <BlogList>
                 {list.map((item, index) => {
                     return (
-                        <div className='blog-item' key={index}>
+                        <div className={Class[index % Class.length]} key={index}>
                             <div className='post-thumb'>
                                 <Link to='/'>
-                                    <img src={item.thumbnail ? item.thumbnail : this.thumbImg()} alt=""/>
+                                    <img src={item.thumbnail} alt=""/>
                                 </Link>
                             </div>
                             <div className='post-content-wrap'>
-
+                                <div className='post-content'>
+                                    <div className='post-date'>
+                                        <i className='iconfont icon-time'/>
+                                        {this.setTime(item.createTime)}
+                                    </div>
+                                    <Link to='/' className='post-title'>
+                                        <h3>{item.title}</h3>
+                                    </Link>
+                                    <div className='post-meta'>
+                                        <span>
+                                            <i className='iconfont icon-attention'/>
+                                            {item.views} 热度
+                                        </span>
+                                        <span className='comments-number'>
+                                            <i className='iconfont icon-mark'/>
+                                            {item.comments} 评论
+                                        </span>
+                                        <span>
+                                            <i className='iconfont icon-file'/> JavaScript
+                                        </span>
+                                    </div>
+                                    <div className='float-content'>
+                                        <p>{item.summary}</p>
+                                        <div className='post-bottom'>
+                                            <Link to='/'>
+                                                <i className='iconfont icon-caidan'/>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )
@@ -40,38 +85,37 @@ class List extends PureComponent {
         )
     }
 
-    thumbImg() {
-        const {thumbList} = this.props;
-        const list = thumbList.toJS();
-        const num = this.getrand(0,list.length-1);
-        return list[num].img
+    setTime(time) {
+        const date = new Date(time);
+        let Y = date.getFullYear() + '-';
+        let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+        let D = date.getDate() + ' ';
+        return (Y + M + D)
     }
 
-    getrand(m, n) {
-        return Math.floor(Math.random() * (n - m + 1)) + m;
-    };
-
     componentDidMount() {
-        this.props.getBlogList();
         this.props.randomThumb();
+        this.props.getBlogList(1, false);
     }
 }
 
 const mapState = (state) => {
     return {
         blogList: state.getIn(['home', 'blogList']),
-        thumbList: state.getIn(['home', 'thumbList']),
+        page: state.getIn(['home', 'articlePage']),
+        finished: state.getIn(['home', 'finished']),
     }
 };
 
 const mapDispatch = (dispatch) => {
     return {
-        getBlogList() {
-            dispatch(actionCreators.getBlogList())
+        getBlogList(page, finished) {
+            dispatch(actionCreators.getBlogList(page, finished))
         },
         randomThumb() {
             dispatch(actionCreators.randomThumb())
-        }
+        },
     }
 };
+
 export default connect(mapState, mapDispatch)(List);

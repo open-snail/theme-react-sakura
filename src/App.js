@@ -5,6 +5,7 @@ import {GlobalStyle} from "./style";
 import store from "./store";
 import {Provider} from 'react-redux';
 import Header from "./common/header";
+import Footer from "./common/footer";
 import Home from './page/home';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
                     <GlobalStyle/>
                     <Header/>
                     <Route path='/' exact component={Home}/>
+                    <Footer/>
                 </BrowserRouter>
             </Provider>
         )
