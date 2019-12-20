@@ -23,7 +23,7 @@ class Header extends Component {
                             <div className='flex-items'>
                                 <Nav className='flex-items'>
                                     <NavItem>
-                                        <Link to={'/index'} className='nav-item'>
+                                        <Link to={'/'} className='nav-item'>
                                             <i className='iconfont icon-fort-awesome'/>
                                             <span>首页</span>
                                         </Link>

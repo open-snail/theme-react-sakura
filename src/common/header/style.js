@@ -8,10 +8,10 @@ export const Headers = styled.div`
             box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
         }
     } 
-    // &:hover .nav-wrapper{
-    //     background: rgba(255,255,255,.95);
-    //     box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
-    // }
+    &:hover .nav-wrapper{
+        background: rgba(255,255,255,.95);
+        box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
+    }
 `;
 
 export const NavWrapper = styled.div`
@@ -21,6 +21,7 @@ export const NavWrapper = styled.div`
     top:0;
     padding:0 30px
     z-index:999;
+    transition: all .4s ease;
 `;
 
 export const NavLeft = styled.div`

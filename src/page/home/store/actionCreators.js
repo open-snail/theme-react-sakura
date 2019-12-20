@@ -41,19 +41,19 @@ export const getFeature = () => {
     }
 };
 
-const setBlogList = (data, nextPage) => ({
+const setBlogList = (data, nextPage, override) => ({
     type: constants.GET_BLOGLIST,
     data: fromJS(data),
-    nextPage
+    nextPage,
+    override
 });
 
 const setfinished = () => ({
     type: constants.SET_FINISHED,
 });
 
-export const getBlogList = (page, finished) => {
+export const getBlogList = (page, override) => {
     return (dispatch) => {
-        if (finished) return;
         axios.get('/posts/posts/v1/list', {
             params: {
                 page: page,
@@ -63,7 +63,7 @@ export const getBlogList = (page, finished) => {
             if (res.success === 1) {
                 let current = res.pageInfo.page * res.pageInfo.size;
                 let total = res.pageInfo.total;
-                dispatch(setBlogList(res.models, page + 1));
+                dispatch(setBlogList(res.models, page + 1, override));
                 if (current > total) dispatch(setfinished());
             }
         });

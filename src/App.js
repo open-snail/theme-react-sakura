@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import Header from "./common/header";
 import Footer from "./common/footer";
 import Home from './page/home';
-
+import Article from "./page/article";
 class App extends Component {
     render() {
         return (
@@ -16,6 +16,7 @@ class App extends Component {
                     <GlobalStyle/>
                     <Header/>
                     <Route path='/' exact component={Home}/>
+                    <Route path='/article/:id' exact component={Article}/>
                     <Footer/>
                 </BrowserRouter>
             </Provider>

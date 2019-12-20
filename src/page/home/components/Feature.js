@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {FeatureWrapper, FeatureTitle} from '../style';
 import {actionCreators} from '../store';
+import {Row, Col} from 'antd';
 
 class Feature extends PureComponent {
     render() {
@@ -24,11 +25,11 @@ class Feature extends PureComponent {
         const {featureList} = this.props;
         const list = featureList.toJS();
         return (
-            <div className='top-feature-row row'>
+            <Row className='top-feature-row' gutter={16}>
                 {
                     list.map((item, index) => {
                         return (
-                            <div className="col-md-12 col-lg-4" key={index}>
+                            <Col className="top-feature-v2" key={index} xs={24} sm={24} md={8} lg={8} xl={8}>
                                 <div className='top-feature-item'>
                                     <Link to='/'>
                                         <div className='img-box'>
@@ -40,11 +41,11 @@ class Feature extends PureComponent {
                                         </div>
                                     </Link>
                                 </div>
-                            </div>
+                            </Col>
                         )
                     })
                 }
-            </div>
+            </Row>
         )
     }
 }
@@ -62,4 +63,5 @@ const mapDispatch = (dispatch) => {
         }
     }
 };
+
 export default connect(mapState, mapDispatch)(Feature);

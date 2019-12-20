@@ -5,8 +5,8 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 	html, body, div, span, applet, object, iframe,
-	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-	a, abbr, acronym, address, big, cite, code,
+	h1, h2, h3, h4, h5, h6, p, blockquote, 
+	a, abbr, acronym, address, big, cite, 
 	del, dfn, em, img, ins, kbd, q, s, samp,
 	small, strike, strong, sub, sup, tt, var,
 	b, u, i, center,
@@ -29,6 +29,12 @@ export const GlobalStyle = createGlobalStyle`
 	footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
+	.transition-color{
+	    transition: color .2s ease-out,border .2s ease-out,opacity .2s ease-out;
+	}
+	a{
+        transition: color .2s ease-out,border .2s ease-out,opacity .2s ease-out;
+	}
 	a:hover{
 	    text-decoration: none;
 	}
@@ -41,6 +47,10 @@ export const GlobalStyle = createGlobalStyle`
 	ul,li{
 	    margin:0;
 	}
+	.lazyload {
+        filter: blur(0px);
+        transition: .3s filter linear,.3s -webkit-filter linear;
+    }
 	blockquote, q {
 		quotes: none;
 	}

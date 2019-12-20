@@ -432,6 +432,11 @@ export const BlogList = styled.div`
                 font-size: 16px;
                 font-weight: bold;
                 color: #504e4e;
+                line-height:20px;
+                transition: color .2s ease-out,border .2s ease-out,opacity .2s ease-out;
+            }
+            &:hover h3{
+                color: #FE9600;
             }
         } 
         .comments-number{
@@ -459,6 +464,9 @@ export const BlogList = styled.div`
             i {
                 font-size: 25px;
                 color: #666;
+                &:hover{
+                    color: #FE9600;
+                }
             }
         }
     }
@@ -503,6 +511,8 @@ export const PagInation = styled.div`
     margin: 40px 0 80px;
     display: inline-block;
     .btn{
+        display: inline-block;
+        cursor: pointer;
         padding: 13px 35px;
         border: 1px solid #d6d6d6;
         border-radius: 50px;

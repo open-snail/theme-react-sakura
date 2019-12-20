@@ -66,9 +66,13 @@ const thumbImg = (thumbList, data) => {
 
 const setBlogList = (state, action) => {
     const arr = thumbImg(state.get('thumbList'), action.data);
-    return state.merge({
-        blogList: state.get('blogList').concat(arr),
-        articlePage: action.nextPage
+    return action.override ? state.merge({
+        blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
+        articlePage: action.nextPage,
+        finished: false
+    }) : state.merge({
+        blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
+        articlePage: action.nextPage,
     })
 };
 

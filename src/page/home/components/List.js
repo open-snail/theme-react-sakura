@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {FeatureTitle, HomeList, BlogList, PagInation} from "../style";
 import {actionCreators} from "../store";
+import {getTime} from '../../../lib/public';
 
 class List extends PureComponent {
     render() {
-        const {page, finished} = this.props;
         return (
             <HomeList>
                 <FeatureTitle>
@@ -14,20 +14,21 @@ class List extends PureComponent {
                 </FeatureTitle>
                 {this.BlogList()}
                 <PagInation>
-                    {this.PagInation(page, finished)}
+                    {this.PagInation()}
                 </PagInation>
             </HomeList>
         )
     }
 
-    PagInation(page, finished) {
+    PagInation() {
+        const {page, finished} = this.props;
         if (finished) {
             return (
                 <p>很高兴你翻到这里，但是真的没有了...</p>
             )
         } else {
             return (
-                <div onClick={() => this.props.getBlogList(page, finished)} className='btn'>Previous</div>
+                <div onClick={() => this.props.getBlogList(page)} className='btn'>Previous</div>
             )
         }
     }
@@ -42,7 +43,7 @@ class List extends PureComponent {
                     return (
                         <div className={Class[index % Class.length]} key={index}>
                             <div className='post-thumb'>
-                                <Link to='/'>
+                                <Link to={'/article/' + item.id}>
                                     <img src={item.thumbnail} alt=""/>
                                 </Link>
                             </div>
@@ -50,9 +51,9 @@ class List extends PureComponent {
                                 <div className='post-content'>
                                     <div className='post-date'>
                                         <i className='iconfont icon-time'/>
-                                        {this.setTime(item.createTime)}
+                                        {getTime(item.createTime)}
                                     </div>
-                                    <Link to='/' className='post-title'>
+                                    <Link to={'/article/' + item.id} className='post-title'>
                                         <h3>{item.title}</h3>
                                     </Link>
                                     <div className='post-meta'>
@@ -71,7 +72,7 @@ class List extends PureComponent {
                                     <div className='float-content'>
                                         <p>{item.summary}</p>
                                         <div className='post-bottom'>
-                                            <Link to='/'>
+                                            <Link to={'/article/' + item.id}>
                                                 <i className='iconfont icon-caidan'/>
                                             </Link>
                                         </div>
@@ -85,17 +86,9 @@ class List extends PureComponent {
         )
     }
 
-    setTime(time) {
-        const date = new Date(time);
-        let Y = date.getFullYear() + '-';
-        let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-        let D = date.getDate() + ' ';
-        return (Y + M + D)
-    }
-
     componentDidMount() {
         this.props.randomThumb();
-        this.props.getBlogList(1, false);
+        this.props.getBlogList(1, true);
     }
 }
 
@@ -109,8 +102,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
     return {
-        getBlogList(page, finished) {
-            dispatch(actionCreators.getBlogList(page, finished))
+        getBlogList(page, override) {
+            dispatch(actionCreators.getBlogList(page, override))
         },
         randomThumb() {
             dispatch(actionCreators.randomThumb())
