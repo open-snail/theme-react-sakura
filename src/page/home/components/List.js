@@ -103,7 +103,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
     return {
         getBlogList(page, override) {
-            dispatch(actionCreators.getBlogList(page, override))
+            dispatch(actionCreators.getBlogList(page,  override))
         },
         randomThumb() {
             dispatch(actionCreators.randomThumb())
