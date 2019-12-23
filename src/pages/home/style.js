@@ -528,4 +528,11 @@ export const PagInation = styled.div`
         color: #989898;
         font-size: 15px;
     }
+    .example{
+        height:44px;
+        line-height:44px;
+        i{
+            background-color: #FE9600;
+        }
+    }
 `;

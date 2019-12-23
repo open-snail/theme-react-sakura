@@ -15,3 +15,7 @@ export const getDetail = (id) => {
 		});
 	}
 };
+
+export const delDetail = () =>({
+	type: constants.DEL_DETAIL,
+});

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {FeatureTitle, HomeList, BlogList, PagInation} from "../style";
 import {actionCreators} from "../store";
 import {getTime} from '../../../lib/public';
+import {Spin} from 'antd';
 
 class List extends PureComponent {
     render() {
@@ -21,15 +22,23 @@ class List extends PureComponent {
     }
 
     PagInation() {
-        const {page, finished} = this.props;
+        const {page, finished, loading} = this.props;
         if (finished) {
             return (
                 <p>很高兴你翻到这里，但是真的没有了...</p>
             )
         } else {
-            return (
-                <div onClick={() => this.props.getBlogList(page)} className='btn'>Previous</div>
-            )
+            if (loading) {
+                return (
+                    <div className="example">
+                        <Spin size="large"/>
+                    </div>
+                )
+            } else {
+                return (
+                    <div onClick={() => this.props.getBlogList(page)} className='btn'>Previous</div>
+                )
+            }
         }
     }
 
@@ -97,13 +106,14 @@ const mapState = (state) => {
         blogList: state.getIn(['home', 'blogList']),
         page: state.getIn(['home', 'articlePage']),
         finished: state.getIn(['home', 'finished']),
+        loading: state.getIn(['home', 'loading']),
     }
 };
 
 const mapDispatch = (dispatch) => {
     return {
         getBlogList(page, override) {
-            dispatch(actionCreators.getBlogList(page,  override))
+            dispatch(actionCreators.getBlogList(page, override))
         },
         randomThumb() {
             dispatch(actionCreators.randomThumb())

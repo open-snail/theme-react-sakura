@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux-immutable';
-import {reducer as headerReducer} from "../common/header/store";
-import {reducer as homeReducer} from '../page/home/store';
-import {reducer as articleReducer} from '../page/article/store';
+import {reducer as headerReducer} from "../components/header/store";
+import {reducer as homeReducer} from '../pages/home/store';
+import {reducer as articleReducer} from '../pages/article/store';
 
 const reducer = combineReducers({
     header: headerReducer,

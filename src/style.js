@@ -4,6 +4,9 @@ export const GlobalStyle = createGlobalStyle`
     *{
         box-sizing: border-box;
     }
+    body{
+        font-family: 'Noto Serif SC','Source Han Serif SC','Source Han Serif','source-han-serif-sc','PT Serif','SongTi SC','MicroSoft Yahei',Georgia,serif;
+    }
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, 
 	a, abbr, acronym, address, big, cite, 
@@ -17,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 	figure, figcaption, footer, header, hgroup, 
 	menu, nav, output, ruby, section, summary,
 	time, mark, audio, video {
-	    font-family: 'Noto Serif SC','Source Han Serif SC','Source Han Serif','source-han-serif-sc','PT Serif','SongTi SC','MicroSoft Yahei',Georgia,serif;
 		margin: 0;
 		padding: 0;
 		border: 0;

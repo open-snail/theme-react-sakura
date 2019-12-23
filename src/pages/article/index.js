@@ -6,21 +6,19 @@ import {ArticleWrapper, ArticleTop, MainWrapper} from './style';
 import {actionCreators} from './store';
 import {getTime} from '../../lib/public';
 import 'highlight.js/styles/atom-one-dark.css'
+import {Spin} from 'antd';
+import Tocify from './tocify';
 
 class Article extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tocify: new Tocify()
+        }
+    }
+
     render() {
         const {content} = this.props;
-        marked.setOptions({
-            highlight: code => hljs.highlightAuto(code).value,
-            pedantic: false,
-            gfm: true,
-            tables: true,
-            breaks: false,
-            sanitize: false,
-            smartLists: true,
-            smartypants: false,
-            xhtml: false
-        });
         return (
             <ArticleWrapper>
                 <div className='pattern-center-blank'/>
@@ -40,16 +38,41 @@ class Article extends PureComponent {
                     </div>
                 </ArticleTop>
                 <MainWrapper>
-                    {
-                        content ? <div className='entry-content' dangerouslySetInnerHTML={{__html: marked(content.content)}}/> : null
+                    {content ?
+                        <div className='flex-items'>
+                            <div className='entry-content cell' dangerouslySetInnerHTML={{__html: marked(content.content)}}/>
+                            {this.state.tocify && this.state.tocify.render()}
+                        </div> : this.Spin()
                     }
                 </MainWrapper>
             </ArticleWrapper>
         )
     }
 
+
     componentDidMount() {
         this.props.getDetail(this.props.match.params.id);
+        const renderer = new marked.Renderer();
+        renderer.heading = (text, level) => {
+            const anchor = this.state.tocify.add(text, level);
+            return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
+        };
+        marked.setOptions({
+            renderer: renderer,
+            highlight: code => hljs.highlightAuto(code).value
+        });
+    }
+
+    componentWillUnmount() {
+        this.props.delDetail();
+    }
+
+    Spin() {
+        return (
+            <div className="example">
+                <Spin size="large"/>
+            </div>
+        )
     }
 }
 
@@ -63,6 +86,9 @@ const mapDispatch = (dispatch) => {
     return {
         getDetail(id) {
             dispatch(actionCreators.getDetail(id));
+        },
+        delDetail() {
+            dispatch(actionCreators.delDetail());
         }
     }
 };

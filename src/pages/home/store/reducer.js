@@ -9,7 +9,8 @@ const defaultState = fromJS({
     blogList: [],
     articlePage: 1,
     thumbList: [],
-    finished: false
+    finished: false,
+    loading:true
 });
 
 const setBanner = (state, action) => {
@@ -69,10 +70,12 @@ const setBlogList = (state, action) => {
     return action.override ? state.merge({
         blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
         articlePage: action.nextPage,
-        finished: false
+        finished: false,
+        loading:false
     }) : state.merge({
         blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
         articlePage: action.nextPage,
+        loading:false
     })
 };
 
@@ -98,6 +101,8 @@ export default (state = defaultState, action) => {
             return setRandomThumb(state, action);
         case constants.SET_FINISHED:
             return state.set('finished', true);
+        case constants.LOADING_TRUE:
+            return state.set('loading', true);
         default:
             return state;
     }

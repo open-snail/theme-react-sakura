@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import hr from '../../statics/images/hr.gif';
 
-export const ArticleWrapper =  styled.div`
+export const ArticleWrapper = styled.div`
     .pattern-center-blank{
         padding-top: 75px;
         background-color: #fff;
     }
 `;
 
-export const ArticleTop =  styled.div`
+export const ArticleTop = styled.div`
     position: relative;
     top: 0;
     left: 0;
@@ -74,13 +75,13 @@ export const ArticleTop =  styled.div`
 
 export const MainWrapper = styled.div`
     width:100%;
+    min-height:600px;
     max-width: 900px;
     padding: 0 10px;
     margin-left: auto;
     margin-right: auto;
     padding-top:50px;
     background-color: rgba(255,255,255,.8);
-    animation: main 1s;
     @keyframes main {
         0% {
             opacity: 0;
@@ -93,7 +94,8 @@ export const MainWrapper = styled.div`
     }
     
     .entry-content {
-        position: relative
+        position: relative;
+        animation: main 1s;
     }
     
     .entry-content .begin,.single-begin {
@@ -117,7 +119,8 @@ export const MainWrapper = styled.div`
         padding: 15px 10px 15px 50px;
         color: #616161;
         margin-left: 0;
-        border-radius: 10px
+        border-radius: 10px;
+        margin:16px 0;
     }
     
     .entry-content ol {
@@ -126,7 +129,46 @@ export const MainWrapper = styled.div`
         padding: 15px 10px 15px 50px;
         color: #616161;
         margin-left: 0;
-        border-radius: 10px
+        border-radius: 10px;
+        margin:16px 0;
+    }
+    
+    .entry-content table {
+      display: block;
+      width: 100%;
+      overflow: auto;
+    }
+    
+    .entry-content table th {
+      font-weight: 600;
+    }
+    
+    .entry-content table th,.entry-content table td {
+      padding: 6px 13px;
+      border: 1px solid #dfe2e5;
+    }
+    
+    .entry-content table tr {
+      background-color: #fff;
+      border-top: 1px solid #c6cbd1;
+    }
+    
+    .entry-content table tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+    
+    .entry-content blockquote {
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: .25em solid #dfe2e5;
+    }
+    
+    .entry-content blockquote>:first-child {
+      margin-top: 0;
+    }
+    
+    .entry-content blockquote>:last-child {
+      margin-bottom: 0;
     }
     
     .entry-content ol li,.entry-content ul li {
@@ -141,7 +183,7 @@ export const MainWrapper = styled.div`
     }
     
     .entry-content h3,.entry-content h4,.entry-content h5 {
-        padding-left: 16px
+        padding-left: 16px;
     }
     
     .entry-content h1{
@@ -192,47 +234,38 @@ export const MainWrapper = styled.div`
         color: #ff6d6d;
         font-family: 'Merriweather Sans',Helvetica,Tahoma,Arial,'PingFang SC','Hiragino Sans GB','Microsoft Yahei','WenQuanYi Micro Hei',sans-serif;
         padding-left: 6px;
-        font-size: 1.03em
-    }
-    
-    .serif .entry-content h2:after,.serif .entry-content h1:after {
-        content: "\\00B6";
-        position: absolute;
-        color: #ff6d6d;
-        font-family: 'Merriweather Sans',Helvetica,Tahoma,Arial,'PingFang SC','Hiragino Sans GB','Microsoft Yahei','WenQuanYi Micro Hei',sans-serif;
-        padding-left: 6px;
-        font-size: 1.13em
+        font-size: 1.03em;
     }
     
     .entry-content h3:after {
         content: "#";
         left: 0;
         position: absolute;
-        color: #ff6d6d
+        color: #ff6d6d;
     }
     
     .entry-content h4:after {
         content: "â–Œ";
         left: 0;
         position: absolute;
-        color: #ff6d6d
+        color: #ff6d6d;
     }
     
     .entry-content h5:after {
         content: "â™¯";
         left: 0;
         position: absolute;
-        color: #ff6d6d
+        color: #ff6d6d;
     }
     
     .entry-content a {
         color: #e67474;
-        position: relative
+        position: relative;
     }
     
     .entry-content a:hover {
         color: orange;
-        text-decoration: none
+        text-decoration: none;
     }
     
     .entry-content a:after {
@@ -245,12 +278,12 @@ export const MainWrapper = styled.div`
         left: 0;
         background-color: orange;
         transform-origin: bottom right;
-        transition: transform .25s ease-out
+        transition: transform .25s ease-out;
     }
     
     .entry-content a:hover:after {
         transform: scaleX(1);
-        transform-origin: bottom left
+        transform-origin: bottom left;
     }
     
     .entry-content p {
@@ -260,33 +293,22 @@ export const MainWrapper = styled.div`
     }
     
     .entry-content hr {
-        margin-top: 40px;
-        margin-bottom: 40px;
-        display: block;
-        border: 0;
-        text-align: center;
-        background: 0 0
+        max-width: 100%;
+        height: 50px;
+        background: url(${hr}) 100% no-repeat;
+        border: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
     
-    .entry-content hr:before {
-        content: '...';
-        display: inline-block;
-        margin-left: .6em;
-        color: rgba(0,0,0,.8);
-        position: relative;
-        top: -30px;
-        font-size: 28px;
-        letter-spacing: .6em
-    }
     
     .entry-content .post-password-form {
-        text-align: center
+        text-align: center;
     }
     
     .entry-content a img.alignleft,.entry-content a img.alignright,.entry-content a img.aligncenter {
-        cursor: -webkit-zoom-in
+        cursor: -webkit-zoom-in;
     }
-    
     
     pre{
         position: relative;
@@ -302,11 +324,33 @@ export const MainWrapper = styled.div`
         padding: 20px;
         box-shadow: 0 10px 30px 0px rgba(0,0,0,.4);
     }
+    
     code{
         color: #fff;
         word-break: break-word;
         padding: 2px;
         text-shadow: none;
         border-radius: 0 0 5px 5px;
+    }
+    
+    .example {
+        text-align: center;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        padding: 30px 50px;
+        margin: 20px 0;
+        i{
+            background-color: #FE9600;
+        }
+    }
+    .toc{
+        width:240px;
+        margin-left:25px;
+    }
+    .flex-items{
+        align-items: initial;
+    }
+    .ant-affix{
+        top:75px;
     }
 `;

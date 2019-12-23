@@ -54,6 +54,7 @@ const setfinished = () => ({
 
 export const getBlogList = (page, override) => {
     return (dispatch) => {
+        dispatch({type: constants.LOADING_TRUE});
         axios.get('/posts/posts/v1/list', {
             params: {
                 page: page,
