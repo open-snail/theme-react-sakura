@@ -8,15 +8,11 @@ import {getTime} from '../../lib/public';
 import 'highlight.js/styles/atom-one-dark.css'
 import {Spin} from 'antd';
 import Tocify from './tocify';
+import Comments from './components/Comments';
+
+const tocify = new Tocify();
 
 class Article extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tocify: new Tocify()
-        }
-    }
-
     render() {
         const {content} = this.props;
         return (
@@ -40,8 +36,13 @@ class Article extends PureComponent {
                 <MainWrapper>
                     {content ?
                         <div className='flex-items'>
-                            <div className='entry-content cell' dangerouslySetInnerHTML={{__html: marked(content.content)}}/>
-                            {this.state.tocify && this.state.tocify.render()}
+                            <div className='cell'>
+                                <div className='entry-content'
+                                     dangerouslySetInnerHTML={{__html: marked(content.content)}}
+                                />
+                                <Comments id={this.props.match.params.id}/>
+                            </div>
+                            {tocify && tocify.render()}
                         </div> : this.Spin()
                     }
                 </MainWrapper>
@@ -51,11 +52,12 @@ class Article extends PureComponent {
 
 
     componentDidMount() {
-        this.props.getDetail(this.props.match.params.id);
+        const id = this.props.match.params.id;
+        this.props.getDetail(id);
         const renderer = new marked.Renderer();
         renderer.heading = (text, level) => {
-            const anchor = this.state.tocify.add(text, level);
-            return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
+            const anchor = tocify.add(text, level);
+            return `<h${level} id="${anchor}">${text}</h${level}>`;
         };
         marked.setOptions({
             renderer: renderer,
@@ -65,6 +67,7 @@ class Article extends PureComponent {
 
     componentWillUnmount() {
         this.props.delDetail();
+        tocify.reset();
     }
 
     Spin() {

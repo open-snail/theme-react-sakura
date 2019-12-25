@@ -14,7 +14,7 @@ class Footer extends Component {
                                 href="http://www.bygit.cn">Mashiro</a>
                             </span>
                         </p>
-                        <p>© 2019 樱花庄的白猫 沪ICP备17028213号</p>
+                        <p>© 2019 皮皮轩の小屋 沪ICP备17028213号</p>
                     </div>
                     <p className="footer-sponsor">
                         <a href="https://console.upyun.com/register/?invite=r1EuSLN-f" target={'_blank'}>

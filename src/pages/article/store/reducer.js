@@ -7,10 +7,8 @@ const defaultState = fromJS({
 
 export default (state = defaultState, action) => {
     switch (action.type) {
-        case constants.CHANGE_DETAIL:
-            return state.merge({
-                content: action.content
-            });
+        case constants.GET_DETAIL:
+            return state.set('content', action.content);
         case constants.DEL_DETAIL:
             return state.set('content', '');
         default:

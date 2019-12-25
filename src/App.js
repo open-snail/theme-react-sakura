@@ -9,13 +9,14 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Home from './pages/home';
 import Article from "./pages/article";
-
+import { BackTop } from 'antd';
 class App extends Component {
     render() {
         return (
             <Provider store={store}>
                 <BrowserRouter>
                     <ScrollToTop>
+                        <BackTop />
                         <GlobalStyle/>
                         <Header/>
                         <Route path='/' exact component={Home}/>

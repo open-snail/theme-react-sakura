@@ -10,7 +10,8 @@ const defaultState = fromJS({
     articlePage: 1,
     thumbList: [],
     finished: false,
-    loading:true
+    loading:true,
+    isList:false
 });
 
 const setBanner = (state, action) => {
@@ -71,11 +72,13 @@ const setBlogList = (state, action) => {
         blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
         articlePage: action.nextPage,
         finished: false,
-        loading:false
+        loading:false,
+        isList:true
     }) : state.merge({
         blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
         articlePage: action.nextPage,
-        loading:false
+        loading:false,
+        isList:true
     })
 };
 

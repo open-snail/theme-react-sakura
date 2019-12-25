@@ -8,26 +8,15 @@ const handleClick = (e, link) => {
     // console.log(link);
 };
 
-export interface TocItem {
-    anchor: string;
-    level: number;
-    text: string;
-    children?: TocItem[];
-}
-
-export type TocItems = TocItem[]; // TOC目录树结构
 
 export default class Tocify {
-    anchors: string[];
-
-    tocItems: TocItems = [];
 
     constructor() {
         this.anchors = [];
         this.tocItems = [];
     }
 
-    add(text: string, level: number, id: string = '') {
+    add(text, level, id = '') {
         const count = this.anchors.filter(anchor => anchor === text).length;
         const anchor = id || (count ? `${text}${count}` : text);
         this.anchors.push(anchor);
@@ -67,7 +56,7 @@ export default class Tocify {
         this.anchors = [];
     };
 
-    renderToc(items: TocItem[]) { // 递归 render
+    renderToc(items) { // 递归 render
         return items.map(item => (
             <Link key={item.anchor} href={`#${item.anchor}`} title={item.text}>
                 {item.children && this.renderToc(item.children)}
@@ -76,13 +65,14 @@ export default class Tocify {
     }
 
     render() {
-        if(this.tocItems.length){
+        if (this.tocItems.length) {
             return (
-                <Anchor className='toc' affix showInkInFixed onClick={handleClick}>
+                <Anchor className='toc' affix showInkInFixed onClick={handleClick} offsetTop={100}>
+                    <h3>文章目录</h3>
                     {this.renderToc(this.tocItems)}
                 </Anchor>
             );
-        }else {
+        } else {
             return null
         }
     }
