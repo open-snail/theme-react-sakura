@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Headers, NavWrapper, NavLeft, NavRight, Nav, NavItem, IconBox} from './style';
 import {actionCreators} from './store';
 import {Icon, Menu, Dropdown, Affix} from 'antd';
 
-class Header extends Component {
+class Header extends PureComponent {
 
     componentDidMount() {
         this.props.getCategory();
@@ -35,10 +35,10 @@ class Header extends Component {
                                             getPopupContainer={() => document.getElementById('area')}
                                             overlayClassName='NavDropdown'
                                         >
-                                            <Link to={'/'} className='nav-item'>
+                                            <span className='nav-item'>
                                                 <i className='iconfont icon-list-ul'/>
                                                 <span>分类</span>
-                                            </Link>
+                                            </span>
                                         </Dropdown>
                                     </NavItem>
                                     <NavItem>
@@ -75,7 +75,7 @@ class Header extends Component {
                     list.map((item, index) => {
                         return (
                             <Menu.Item key={index}>
-                                <Link to={'/'}>{item.name}</Link>
+                                <Link to={'/category/' + item.id}>{item.name}</Link>
                             </Menu.Item>
                         )
                     })

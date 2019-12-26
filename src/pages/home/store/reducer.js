@@ -61,6 +61,7 @@ const thumbImg = (thumbList, data) => {
             createTime: list[i].createTime,
             syncStatus: list[i].syncStatus,
             author: list[i].author,
+            categoryName: list[i].categoryName
         })
     }
     return arr

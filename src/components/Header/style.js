@@ -56,6 +56,7 @@ export const NavItem = styled.li`
         height:40px;
         line-height:40px;
         position: relative;
+        cursor: pointer;
     }
     .nav-item i{
         margin-right:5px;

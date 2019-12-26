@@ -13,6 +13,13 @@ import Comments from './components/Comments';
 const tocify = new Tocify();
 
 class Article extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            timg: ''
+        }
+    }
+
     render() {
         const {content} = this.props;
         return (
@@ -20,17 +27,15 @@ class Article extends PureComponent {
                 <div className='pattern-center-blank'/>
                 <ArticleTop>
                     <div className='pattern-attachment-img'>
-                        <img className='lazyload' src={require('../../statics/images/list_01.jpg')} alt=""/>
+                        <img className='lazyload' src={this.state.timg} alt=""/>
                     </div>
                     <div className='single-header'>
                         <h1 className='entry-title'>{content.title}</h1>
-                        <p className='entry-census'>
-                            <span>by05021</span>
-                            <span className="bull">·</span>
+                        {content && <p className='entry-census'>
                             <span>{getTime(content.createTime)}</span>
                             <span className="bull">·</span>
-                            <span>{content.views} 次阅读</span>
-                        </p>
+                            <span>{content.views} 次阅读</span></p>
+                        }
                     </div>
                 </ArticleTop>
                 <MainWrapper>
@@ -52,8 +57,6 @@ class Article extends PureComponent {
 
 
     componentDidMount() {
-        const id = this.props.match.params.id;
-        this.props.getDetail(id);
         const renderer = new marked.Renderer();
         renderer.heading = (text, level) => {
             const anchor = tocify.add(text, level);
@@ -63,6 +66,21 @@ class Article extends PureComponent {
             renderer: renderer,
             highlight: code => hljs.highlightAuto(code).value
         });
+        const id = this.props.match.params.id;
+        this.props.getDetail(id);
+        this.getTimg();
+    }
+
+    getTimg() {
+        const list = this.props.timg.toJS();
+        const num = this.getrand(0, list.length - 1);
+        this.setState({
+            timg: list[num].img
+        })
+    }
+
+    getrand(m, n) {
+        return Math.floor(Math.random() * (n - m + 1)) + m;
     }
 
     componentWillUnmount() {
@@ -81,7 +99,8 @@ class Article extends PureComponent {
 
 const mapState = (state) => {
     return {
-        content: state.getIn(['article', 'content'])
+        content: state.getIn(['article', 'content']),
+        timg: state.getIn(['article', 'timg'])
     }
 };
 
