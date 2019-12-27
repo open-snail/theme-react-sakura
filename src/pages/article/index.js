@@ -1,27 +1,33 @@
 import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import {ArticleWrapper, ArticleTop, MainWrapper} from './style';
-import {actionCreators} from './store';
 import {getTime} from '../../lib/public';
 import 'highlight.js/styles/atom-one-dark.css'
 import {Spin} from 'antd';
 import Tocify from './tocify';
 import Comments from './components/Comments';
-
-const tocify = new Tocify();
+import axios from "axios";
 
 class Article extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            timg: ''
+            content: '',
+            timglist: [
+                {img: 'http://image.bygit.cn/timg-1.png'},
+                {img: 'http://image.bygit.cn/timg-2.png'},
+                {img: 'http://image.bygit.cn/timg-3.png'},
+                {img: 'http://image.bygit.cn/timg-4.png'}
+            ],
+            timg: '',
+            id: props.match.params.id,
+            tocify: new Tocify()
         }
     }
 
     render() {
-        const {content} = this.props;
+        const {content} = this.state;
         return (
             <ArticleWrapper>
                 <div className='pattern-center-blank'/>
@@ -45,9 +51,9 @@ class Article extends PureComponent {
                                 <div className='entry-content'
                                      dangerouslySetInnerHTML={{__html: marked(content.content)}}
                                 />
-                                <Comments id={this.props.match.params.id}/>
+                                <Comments id={this.state.id}/>
                             </div>
-                            {tocify && tocify.render()}
+                            {this.state.tocify && this.state.tocify.render()}
                         </div> : this.Spin()
                     }
                 </MainWrapper>
@@ -59,33 +65,31 @@ class Article extends PureComponent {
     componentDidMount() {
         const renderer = new marked.Renderer();
         renderer.heading = (text, level) => {
-            const anchor = tocify.add(text, level);
+            const anchor = this.state.tocify.add(text, level);
             return `<h${level} id="${anchor}">${text}</h${level}>`;
         };
         marked.setOptions({
             renderer: renderer,
             highlight: code => hljs.highlightAuto(code).value
         });
-        const id = this.props.match.params.id;
-        this.props.getDetail(id);
-        this.getTimg();
+        this.getDetail(this.state.id);
     }
 
-    getTimg() {
-        const list = this.props.timg.toJS();
-        const num = this.getrand(0, list.length - 1);
-        this.setState({
-            timg: list[num].img
-        })
+    getDetail(id) {
+        axios.get('/posts/posts/v1/' + id).then((res) => {
+            if (res.success === 1) {
+                const list = this.state.timglist;
+                const num = this.getrand(0, list.length - 1);
+                this.setState({
+                    content: res.model,
+                    timg: list[num].img
+                })
+            }
+        });
     }
 
     getrand(m, n) {
         return Math.floor(Math.random() * (n - m + 1)) + m;
-    }
-
-    componentWillUnmount() {
-        this.props.delDetail();
-        tocify.reset();
     }
 
     Spin() {
@@ -97,22 +101,4 @@ class Article extends PureComponent {
     }
 }
 
-const mapState = (state) => {
-    return {
-        content: state.getIn(['article', 'content']),
-        timg: state.getIn(['article', 'timg'])
-    }
-};
-
-const mapDispatch = (dispatch) => {
-    return {
-        getDetail(id) {
-            dispatch(actionCreators.getDetail(id));
-        },
-        delDetail() {
-            dispatch(actionCreators.delDetail());
-        }
-    }
-};
-
-export default connect(mapState, mapDispatch)(Article);
+export default Article;

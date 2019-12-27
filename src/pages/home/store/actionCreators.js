@@ -10,11 +10,11 @@ const setBanner = (data) => ({
 export const getBanner = () => {
     return (dispatch) => {
         const bannerList = [
-            {img:'http://image.bygit.cn/banner-1.png'},
-            {img:'http://image.bygit.cn/banner-2.png'},
-            {img:'http://image.bygit.cn/banner-3.png'},
-            {img:'http://image.bygit.cn/banner-4.png'},
-            {img:'http://image.bygit.cn/banner-5.png'}
+            {img: 'http://image.bygit.cn/banner-1.png'},
+            {img: 'http://image.bygit.cn/banner-2.png'},
+            {img: 'http://image.bygit.cn/banner-3.png'},
+            {img: 'http://image.bygit.cn/banner-4.png'},
+            {img: 'http://image.bygit.cn/banner-5.png'}
         ];
         dispatch(setBanner(bannerList));
     }
@@ -36,9 +36,9 @@ const setFeature = (data) => ({
 export const getFeature = () => {
     return (dispatch) => {
         const featureList = [
-            {img:'http://image.bygit.cn/list_01.png', title: 'Sakura', info: '本站 WordPress 主题'},
-            {img:'http://image.bygit.cn/list_04.png', title: 'Pixiv', info: 'P 站的正确打开方式'},
-            {img:'http://image.bygit.cn/list_07.png', title: '明日方舟', info: '游戏主界面 H5 复刻'},
+            {img: 'http://image.bygit.cn/list_01.png', title: 'Sakura', info: '本站 WordPress 主题'},
+            {img: 'http://image.bygit.cn/list_04.png', title: 'Pixiv', info: 'P 站的正确打开方式'},
+            {img: 'http://image.bygit.cn/list_07.png', title: '明日方舟', info: '游戏主界面 H5 复刻'},
         ];
         dispatch(setFeature(featureList));
     }
@@ -74,29 +74,3 @@ export const getBlogList = (page, override) => {
     }
 };
 
-const setRandomThumb = (data) => ({
-    type: constants.RANDOW_THUMB,
-    data: fromJS(data),
-});
-
-export const randomThumb = () => {
-    return (dispatch) => {
-        const thumbList = [
-            {img:'http://image.bygit.cn/list_01.png'},
-            {img:'http://image.bygit.cn/list_02.png'},
-            {img:'http://image.bygit.cn/list_03.png'},
-            {img:'http://image.bygit.cn/list_04.png'},
-            {img:'http://image.bygit.cn/list_05.png'},
-            {img:'http://image.bygit.cn/list_06.png'},
-            {img:'http://image.bygit.cn/list_07.png'},
-            {img:'http://image.bygit.cn/list_08.png'},
-            {img:'http://image.bygit.cn/list_09.png'},
-            {img:'http://image.bygit.cn/list_10.png'},
-            {img:'http://image.bygit.cn/list_11.png'},
-            {img:'http://image.bygit.cn/list_12.png'},
-            {img:'http://image.bygit.cn/list_13.png'},
-            {img:'http://image.bygit.cn/list_14.png'}
-        ];
-        dispatch(setRandomThumb(thumbList));
-    }
-};

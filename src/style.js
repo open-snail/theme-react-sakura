@@ -40,9 +40,6 @@ export const GlobalStyle = createGlobalStyle`
 	a:hover{
 	    text-decoration: none;
 	}
-	body {
-		line-height: 1;
-	}
 	ol, ul {
 		list-style: none;
 	}

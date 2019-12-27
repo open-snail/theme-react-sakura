@@ -1,8 +1,9 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {FeatureWrapper, FeatureTitle} from '../style';
 import {Row, Col} from 'antd';
+import {actionCreators} from "../store";
 
 const featureList = (props) => {
     const {featureList} = props;
@@ -32,16 +33,22 @@ const featureList = (props) => {
     )
 };
 
-const Feature = (props) => {
-    return (
-        <FeatureWrapper>
-            <FeatureTitle>
-                <h1><i className='iconfont icon-anchor'/><span> START:DASH!!</span></h1>
-            </FeatureTitle>
-            {featureList(props)}
-        </FeatureWrapper>
-    )
-};
+class Feature extends PureComponent {
+    render() {
+        return (
+            <FeatureWrapper>
+                <FeatureTitle>
+                    <h1><i className='iconfont icon-anchor'/><span> START:DASH!!</span></h1>
+                </FeatureTitle>
+                {featureList(this.props)}
+            </FeatureWrapper>
+        )
+    }
+
+    componentDidMount() {
+        this.props.getFeature();
+    }
+}
 
 const mapState = (state) => {
     return {
@@ -49,4 +56,12 @@ const mapState = (state) => {
     }
 };
 
-export default connect(mapState)(Feature);
+const mapDispatch = (dispatch) => {
+    return {
+        getFeature() {
+            dispatch(actionCreators.getFeature());
+        }
+    }
+};
+
+export default connect(mapState, mapDispatch)(Feature);

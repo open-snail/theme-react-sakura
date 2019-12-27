@@ -8,10 +8,25 @@ const defaultState = fromJS({
     featureList: [],
     blogList: [],
     articlePage: 1,
-    thumbList: [],
+    thumbList: [
+        {img: 'http://image.bygit.cn/list_01.png'},
+        {img: 'http://image.bygit.cn/list_02.png'},
+        {img: 'http://image.bygit.cn/list_03.png'},
+        {img: 'http://image.bygit.cn/list_04.png'},
+        {img: 'http://image.bygit.cn/list_05.png'},
+        {img: 'http://image.bygit.cn/list_06.png'},
+        {img: 'http://image.bygit.cn/list_07.png'},
+        {img: 'http://image.bygit.cn/list_08.png'},
+        {img: 'http://image.bygit.cn/list_09.png'},
+        {img: 'http://image.bygit.cn/list_10.png'},
+        {img: 'http://image.bygit.cn/list_11.png'},
+        {img: 'http://image.bygit.cn/list_12.png'},
+        {img: 'http://image.bygit.cn/list_13.png'},
+        {img: 'http://image.bygit.cn/list_14.png'}
+    ],
     finished: false,
-    loading:true,
-    isList:false
+    loading: true,
+    isList: false
 });
 
 const setBanner = (state, action) => {
@@ -45,7 +60,7 @@ const setFeature = (state, action) => {
     })
 };
 
-const thumbImg = (thumbList, data) => {
+const list = (thumbList, data) => {
     const list = data.toJS();
     const Img = thumbList.toJS();
     let arr = [];
@@ -68,24 +83,18 @@ const thumbImg = (thumbList, data) => {
 };
 
 const setBlogList = (state, action) => {
-    const arr = thumbImg(state.get('thumbList'), action.data);
+    const arr = list(state.get('thumbList'), action.data);
     return action.override ? state.merge({
         blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
         articlePage: action.nextPage,
         finished: false,
-        loading:false,
-        isList:true
+        loading: false,
+        isList: true
     }) : state.merge({
         blogList: action.override ? fromJS(arr) : state.get('blogList').concat(fromJS(arr)),
         articlePage: action.nextPage,
-        loading:false,
-        isList:true
-    })
-};
-
-const setRandomThumb = (state, action) => {
-    return state.merge({
-        thumbList: action.data
+        loading: false,
+        isList: true
     })
 };
 
@@ -101,8 +110,6 @@ export default (state = defaultState, action) => {
             return setFeature(state, action);
         case constants.GET_BLOGLIST:
             return setBlogList(state, action);
-        case constants.RANDOW_THUMB:
-            return setRandomThumb(state, action);
         case constants.SET_FINISHED:
             return state.set('finished', true);
         case constants.LOADING_TRUE:
