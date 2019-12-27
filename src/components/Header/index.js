@@ -48,9 +48,15 @@ class Header extends PureComponent {
                                         </Link>
                                     </NavItem>
                                     <NavItem>
-                                        <Link to={'/'} className='nav-item'>
-                                            <i className='iconfont icon-pencil-square-o'/>
-                                            <span>留言板</span>
+                                        <Link to={'/links'} className='nav-item'>
+                                            <i className='iconfont icon-link'/>
+                                            <span>友人帐</span>
+                                        </Link>
+                                    </NavItem>
+                                    <NavItem>
+                                        <Link to={'/tags'} className='nav-item'>
+                                            <i className='iconfont icon-tag'/>
+                                            <span>标签墙</span>
                                         </Link>
                                     </NavItem>
                                 </Nav>

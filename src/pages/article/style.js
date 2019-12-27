@@ -525,6 +525,7 @@ export const CommentTextarea = styled.div`
         overflow: hidden;
         margin: 20px 0;
         input{
+            background: #fff;
             border-radius: 6px;
             width:100%;
             margin: 0;

@@ -73,16 +73,22 @@ class Article extends PureComponent {
             highlight: code => hljs.highlightAuto(code).value
         });
         this.getDetail(this.state.id);
+        this.getTimg();
+    }
+
+    getTimg() {
+        const list = this.state.timglist;
+        const num = this.getrand(0, list.length - 1);
+        this.setState({
+            timg: list[num].img
+        })
     }
 
     getDetail(id) {
         axios.get('/posts/posts/v1/' + id).then((res) => {
             if (res.success === 1) {
-                const list = this.state.timglist;
-                const num = this.getrand(0, list.length - 1);
                 this.setState({
-                    content: res.model,
-                    timg: list[num].img
+                    content: res.model
                 })
             }
         });

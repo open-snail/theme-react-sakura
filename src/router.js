@@ -1,10 +1,12 @@
 import React,{PureComponent} from "react";
 import {Route} from "react-router-dom";
+import {withRouter} from 'react-router-dom';
 import Home from "./pages/home";
 import Article from "./pages/article";
 import Category from "./pages/category";
 import Archives from './pages/archives';
-import {withRouter} from 'react-router-dom';
+import Links from "./pages/links";
+import Tags from "./pages/tags";
 
 class Router extends PureComponent{
     render() {
@@ -14,6 +16,8 @@ class Router extends PureComponent{
                 <Route path='/article/:id' exact component={Article}/>
                 <Route path='/category/:id' exact component={Category}/>
                 <Route path='/archives' exact component={Archives}/>
+                <Route path='/links' exact component={Links}/>
+                <Route path='/tags' exact component={Tags}/>
             </div>
         )
     }

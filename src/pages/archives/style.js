@@ -74,8 +74,18 @@ export const MainWrapper = styled.div`
     margin-right: auto;
     padding-top:50px;
     background-color: rgba(255,255,255,.8);
+    .example{
+        height:52px;
+        line-height:52px;
+        text-align: center;
+        i{
+            background-color: #FE9600;
+        }
+    }
     .wrapper-md{
         padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
     }
     .timeline {
         padding: 0;
@@ -83,18 +93,16 @@ export const MainWrapper = styled.div`
     }
     .tl-header {
         display: block;
-        width: 12em;
+        width: 8em;
         margin-right: 2px;
         margin-left: 2px;
         text-align: center;
         h2{
             color: #ffffff;
-            padding-right: 15px;
-            padding-left: 15px;
             border-radius: 50px;
             font-weight: 500;
             display: inline-block;
-            padding: 5px 10px;
+            padding: 5px 15px;
             font-size: 12px;
             line-height: 1.5;
             border: 1px solid transparent;
@@ -113,7 +121,7 @@ export const MainWrapper = styled.div`
     .tl-wrap {
         display: block;
         padding: 15px 0 15px 20px;
-        margin-left: 6em;
+        margin-left: 4em;
         border-color: #dee5e7;
         border-style: solid;
         border-width: 0 0 0 4px;
@@ -193,7 +201,20 @@ export const MainWrapper = styled.div`
         border-right-color: #fff;
         border-left-width: 0;
     }
-    
+    .start{
+        border-radius: 50px;
+        color: #58666e;
+        background-color: #fff;
+        border-color: #dee5e7;
+        box-shadow: 0 1px 1px rgba(90,90,90,.1);
+        font-weight: 500;
+        padding: 5px 15px;
+        font-size: 12px;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
     .info .title {
         background-color: #23b7e5;
         border-color: #23b7e5;
