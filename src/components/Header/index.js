@@ -42,7 +42,7 @@ class Header extends PureComponent {
                                         </Dropdown>
                                     </NavItem>
                                     <NavItem>
-                                        <Link to={'/'} className='nav-item'>
+                                        <Link to={'/archives'} className='nav-item'>
                                             <i className='iconfont icon-archive'/>
                                             <span>归档</span>
                                         </Link>
