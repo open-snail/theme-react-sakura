@@ -493,6 +493,10 @@ export const CommentsWrapper = styled.div`
             color: rgba(0, 0, 0, 0.25);
         }
     }
+    .text{
+        font-size:14px;
+        padding: 20px 0;
+    }
 `;
 
 export const CommentTextarea = styled.div`

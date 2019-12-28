@@ -7,6 +7,8 @@ import Category from "./pages/category";
 import Archives from './pages/archives';
 import Links from "./pages/links";
 import Tags from "./pages/tags";
+import TagList from "./pages/tags/list";
+import Search from "./pages/search";
 
 class Router extends PureComponent{
     render() {
@@ -18,6 +20,8 @@ class Router extends PureComponent{
                 <Route path='/archives' exact component={Archives}/>
                 <Route path='/links' exact component={Links}/>
                 <Route path='/tags' exact component={Tags}/>
+                <Route path='/tags/:id' exact component={TagList}/>
+                <Route path='/search/:key' exact component={Search}/>
             </div>
         )
     }

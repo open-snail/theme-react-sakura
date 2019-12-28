@@ -11,6 +11,7 @@ class Comments extends PureComponent {
         super(props);
         this.state = {
             id: props.id,
+            isComment: props.isComment,
             commentsList: [],
             pageInfo: {},
             value: '',
@@ -23,7 +24,7 @@ class Comments extends PureComponent {
     }
 
     render() {
-        const {pageInfo, id, commentsList} = this.state;
+        const {pageInfo, id, commentsList, isComment} = this.state;
         return (
             <CommentsWrapper>
                 <h3 className='comments-list-title'>Comments | <span className="noticom">{pageInfo.total} 条评论 </span>
@@ -57,7 +58,7 @@ class Comments extends PureComponent {
                     itemRender={this.itemRender}
                     current={pageInfo.page} pageSize={5} total={pageInfo.total}
                 />
-                <CommentTextarea>
+                {isComment === 1 ? <CommentTextarea>
                     <textarea
                         placeholder="你是我一生只会遇见一次的惊喜 ..."
                         name="comment"
@@ -77,7 +78,7 @@ class Comments extends PureComponent {
                             value="BiuBiuBiu~"
                         />
                     </div>
-                </CommentTextarea>
+                </CommentTextarea> : <p className='text'>此处评论已关闭</p>}
             </CommentsWrapper>
         )
     }
@@ -145,7 +146,7 @@ class Comments extends PureComponent {
                     parentId: ''
                 });
                 this.getComments(id, 1);
-            } else if (res.resultCode === '00008') {
+            } else {
                 this.login();
             }
         });
@@ -175,6 +176,7 @@ class Comments extends PureComponent {
             }).then((res) => {
                 if (res.success === 1) {
                     setToken(res.model.token);
+                    message.success('登录成功');
                 }
             });
             window.removeEventListener("message", this.loginGithubHandel, false);

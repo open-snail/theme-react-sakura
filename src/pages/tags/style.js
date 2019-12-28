@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const CategoryArticleWrapper = styled.div`
+export const TagsWrapper = styled.div`
     .pattern-center-blank{
         padding-top: 75px;
         background-color: #fff;
     }
 `;
 
-export const ArticleTop = styled.div`
+export const TagsTop = styled.div`
     position: relative;
     top: 0;
     left: 0;
@@ -85,18 +85,31 @@ export const MainWrapper = styled.div`
             transform: translateY(0)
         }
     }
-    .page-header{
-        position: relative;
+    .example{
+        height:52px;
+        line-height:52px;
         text-align: center;
-        margin-bottom: 50px;
-        color: #9C9C9C;
-        h1{
-            font-size: 20px;
-            font-weight: 400;
-            border: 1px dashed #ddd;
-            padding: 15px;
-            color: #828282;
-            margin-bottom: 30px;
+        i{
+            background-color: #FE9600;
+        }
+    }
+    .tags-list{
+        span{
+            padding: 2px 20px;
+            margin-right:15px;
+            margin-bottom:15px;
+        }
+        a{
+            line-height:22px;
+        }
+        p{
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            margin: 40px 0 80px;
+            display: inline-block;
+            color: #989898;
+            font-size: 15px;
         }
     }
 `;

@@ -1,17 +1,24 @@
 import React, {PureComponent} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Headers, NavWrapper, NavLeft, NavRight, Nav, NavItem, IconBox} from './style';
 import {actionCreators} from './store';
-import {Icon, Menu, Dropdown, Affix} from 'antd';
+import {Icon, Menu, Dropdown, Affix, message} from 'antd';
 
 class Header extends PureComponent {
-
-    componentDidMount() {
-        this.props.getCategory();
+    constructor(props) {
+        super(props);
+        this.state = {
+            isVisible: false,
+            value: ''
+        };
+        this.handleClick = this.handleClick.bind(this);
+        this.keypress = this.keypress.bind(this);
+        this.setValue = this.setValue.bind(this);
     }
 
     render() {
+        const {isVisible, value} = this.state;
         return (
             <Headers>
                 <Affix>
@@ -61,15 +68,60 @@ class Header extends PureComponent {
                                     </NavItem>
                                 </Nav>
                                 <IconBox className='flex-items'>
-                                    <Icon type="search"/>
+                                    <Icon type="search" onClick={this.handleClick}/>
                                     <Icon type="user"/>
                                 </IconBox>
                             </div>
                         </NavRight>
                     </NavWrapper>
                 </Affix>
+                <div
+                    className={isVisible ? 'search-form search-form--modal is-visible' : 'search-form search-form--modal'}>
+                    <div className='search-form__inner'>
+                        <div className='box'>
+                            <p className="micro mb-">想要找点什么呢？</p>
+                            <Icon type="search"/>
+                            <input
+                                type="search"
+                                name="s"
+                                placeholder="Search"
+                                onKeyPress={this.keypress}
+                                value={value}
+                                onChange={this.setValue}
+                            />
+                        </div>
+                    </div>
+                    <div className="search_close" onClick={this.handleClick}/>
+                </div>
             </Headers>
         )
+    }
+
+    componentDidMount() {
+        this.props.getCategory();
+    }
+
+    keypress(e) {
+        if (e.which === 13) {
+            const {value} = this.state;
+            if (value === '') {
+                message.warning('please type a comment');
+            } else {
+                this.props.history.push('/search/' + value);
+                this.handleClick();
+            }
+        }
+    }
+
+    setValue(e) {
+        const value = e.target.value;
+        this.setState({value: value});
+    }
+
+    handleClick() {
+        this.setState((prevState) => ({
+            isVisible: !prevState.isVisible
+        }))
     }
 
     Category() {
@@ -104,4 +156,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

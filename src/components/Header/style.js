@@ -12,6 +12,118 @@ export const Headers = styled.div`
         background: rgba(255,255,255,.95);
         box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
     }
+    .search-form--modal {
+        -webkit-transition: visibility .25s ease,opacity .25s ease;
+        -moz-transition: visibility .25s ease,opacity .25s ease;
+        -ms-transition: visibility .25s ease,opacity .25s ease;
+        -o-transition: visibility .25s ease,opacity .25s ease;
+        transition: visibility .25s ease,opacity .25s ease;
+        overflow: hidden;
+        z-index: 999;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: #fff;
+        visibility: hidden;
+        opacity: 0;
+    }
+    .search-form--modal .search-form__inner {
+        max-width: 640px;
+        padding: 0 20px;
+        margin: auto;
+        text-align: left;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        height: 285px;
+        top: 0;
+        bottom: 0;
+    }
+    .search-form .box {
+        position: relative;
+    }
+    .search-form--modal .search-form__inner p {
+        padding-left: 24px;
+        color: #404040;
+        font-size: 15px;
+        line-height: 1.5;
+        margin:15px 0 22px 0;
+    }
+    .search-form i {
+        font-size: 32px;
+        font-size: 2rem;
+        line-height: 1;
+        color: #ddd;
+        position: absolute;
+        bottom: 10px;
+        margin-top: -16px;
+        left: 16px;
+    }
+    .search-form input {
+        font-size: 24px;
+        font-size: 1.5rem;
+        background: #fff;
+        padding: 12px 24px 12px 64px;
+        width: 100%;
+        outline: none;
+        border-radius: 50px;
+        color: #666;
+        border: 1px solid #ccc;
+    }
+    .search-form .search_close {
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        background: 0 0;
+        top: 20px;
+        right: 15px;
+        cursor: pointer;
+    }
+    .search_close:before, .search_close:after {
+        background-color: #222;
+        position: absolute;
+        content: "";
+        width: 30px;
+        height: 2px;
+        top: 17px;
+        left: 2px;
+    }
+    .search_close:before {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+    .search_close:after {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+    .search-form.is-visible{
+        visibility: visible;
+        opacity: .99;
+        animation: elastic .5s;
+        background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.2.1/img/other/iloli.gif);
+        background-repeat: no-repeat;
+        background-position: bottom right;
+    }
+    @keyframes elastic {
+        0% {
+            transform: scale(0)
+        }
+    
+        55% {
+            transform: scale(1)
+        }
+    
+        70% {
+            transform: scale(.98)
+        }
+    
+        100% {
+            transform: scale(1)
+        }
+    }
 `;
 
 export const NavWrapper = styled.div`

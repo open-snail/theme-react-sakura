@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import {ArticleWrapper, ArticleTop, MainWrapper} from './style';
@@ -14,12 +15,6 @@ class Article extends PureComponent {
         super(props);
         this.state = {
             content: '',
-            timglist: [
-                {img: 'http://image.bygit.cn/timg-1.png'},
-                {img: 'http://image.bygit.cn/timg-2.png'},
-                {img: 'http://image.bygit.cn/timg-3.png'},
-                {img: 'http://image.bygit.cn/timg-4.png'}
-            ],
             timg: '',
             id: props.match.params.id,
             tocify: new Tocify()
@@ -33,7 +28,7 @@ class Article extends PureComponent {
                 <div className='pattern-center-blank'/>
                 <ArticleTop>
                     <div className='pattern-attachment-img'>
-                        <img className='lazyload' src={this.state.timg} alt=""/>
+                        <img className='lazyload' src={content && (content.thumbnail || this.state.timg)} alt=""/>
                     </div>
                     <div className='single-header'>
                         <h1 className='entry-title'>{content.title}</h1>
@@ -51,7 +46,7 @@ class Article extends PureComponent {
                                 <div className='entry-content'
                                      dangerouslySetInnerHTML={{__html: marked(content.content)}}
                                 />
-                                <Comments id={this.state.id}/>
+                                <Comments id={this.state.id} isComment={content.isComment}/>
                             </div>
                             {this.state.tocify && this.state.tocify.render()}
                         </div> : this.Spin()
@@ -77,7 +72,7 @@ class Article extends PureComponent {
     }
 
     getTimg() {
-        const list = this.state.timglist;
+        const list = this.props.topImg;
         const num = this.getrand(0, list.length - 1);
         this.setState({
             timg: list[num].img
@@ -107,4 +102,10 @@ class Article extends PureComponent {
     }
 }
 
-export default Article;
+const mapState = (state) => {
+    return {
+        topImg: state.getIn(['image', 'topImg'])
+    }
+};
+
+export default connect(mapState)(Article);

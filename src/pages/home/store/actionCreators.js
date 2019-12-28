@@ -35,12 +35,16 @@ const setFeature = (data) => ({
 
 export const getFeature = () => {
     return (dispatch) => {
-        const featureList = [
-            {img: 'http://image.bygit.cn/list_01.png', title: 'Sakura', info: '本站 WordPress 主题'},
-            {img: 'http://image.bygit.cn/list_04.png', title: 'Pixiv', info: 'P 站的正确打开方式'},
-            {img: 'http://image.bygit.cn/list_07.png', title: '明日方舟', info: '游戏主界面 H5 复刻'},
-        ];
-        dispatch(setFeature(featureList));
+        axios.get('/posts/weight/v1/list', {
+            params: {
+                page: 1,
+                size: 3
+            }
+        }).then(function (res) {
+            if (res.success === 1) {
+                dispatch(setFeature(res.models));
+            }
+        });
     }
 };
 

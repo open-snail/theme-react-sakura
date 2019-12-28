@@ -5,8 +5,12 @@ import {FeatureWrapper, FeatureTitle} from '../style';
 import {Row, Col} from 'antd';
 import {actionCreators} from "../store";
 
+const getrand = (m, n) => {
+    return Math.floor(Math.random() * (n - m + 1)) + m;
+};
+
 const featureList = (props) => {
-    const {featureList} = props;
+    const {featureList, ListImg} = props;
     const list = featureList.toJS();
     return (
         <Row className='top-feature-row' gutter={16}>
@@ -15,13 +19,14 @@ const featureList = (props) => {
                     return (
                         <Col className="top-feature-v2" key={index} xs={24} sm={24} md={8} lg={8} xl={8}>
                             <div className='top-feature-item'>
-                                <Link to='/'>
+                                <Link to={'/article/' + item.id}>
                                     <div className='img-box'>
-                                        <img src={item.img} alt=""/>
+                                        <img src={item.thumbnail || ListImg[getrand(0, ListImg.length - 1)].img}
+                                             alt=""/>
                                     </div>
                                     <div className='info'>
-                                        <h3>{item.title}</h3>
-                                        <p>{item.info}</p>
+                                        <h3 className='ellipsis'>{item.title}</h3>
+                                        <p className='ellipsis-two'>{item.summary}</p>
                                     </div>
                                 </Link>
                             </div>
@@ -53,6 +58,7 @@ class Feature extends PureComponent {
 const mapState = (state) => {
     return {
         featureList: state.getIn(['home', 'featureList']),
+        ListImg: state.getIn(['image', 'ListImg'])
     }
 };
 

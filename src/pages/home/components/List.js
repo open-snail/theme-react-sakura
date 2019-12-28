@@ -1,31 +1,10 @@
-import React,{PureComponent} from "react";
+import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
-import {FeatureTitle, HomeList, PagInation, BlogList} from "../style";
-import {Spin} from 'antd';
+import {FeatureTitle, HomeList, BlogList} from "../style";
 import {actionCreators} from "../store";
 import {Link} from "react-router-dom";
 import {getTime} from "../../../lib/public";
-
-const pagInation = (props) => {
-    const {page, finished, loading} = props;
-    if (finished) {
-        return (
-            <p>很高兴你翻到这里，但是真的没有了...</p>
-        )
-    } else {
-        if (loading) {
-            return (
-                <div className="example">
-                    <Spin size="large"/>
-                </div>
-            )
-        } else {
-            return (
-                <div onClick={() => props.getBlogList(page)} className='btn'>Previous</div>
-            )
-        }
-    }
-};
+import PagInation from '../../../components/PagInation';
 
 const List = (props) => {
     const {blogList} = props;
@@ -81,20 +60,20 @@ const List = (props) => {
     )
 };
 
-class ListWrapper extends PureComponent{
+class ListWrapper extends PureComponent {
     render() {
+        const {page, finished, loading} = this.props;
         return (
             <HomeList>
                 <FeatureTitle>
                     <h1><i className='iconfont icon-envira'/><span> Discovery</span></h1>
                 </FeatureTitle>
                 {List(this.props)}
-                <PagInation>
-                    {pagInation(this.props)}
-                </PagInation>
+                <PagInation page={page} finished={finished} loading={loading} getList={this.props.getBlogList}/>
             </HomeList>
         )
     }
+
     componentDidMount() {
         if (!this.props.isList) {
             this.props.getBlogList(1, true);

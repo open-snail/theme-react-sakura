@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import {connect} from 'react-redux';
 import axios from "axios";
 import {ArchivesWrapper, ArticleTop, MainWrapper} from "./style";
 import {Link} from 'react-router-dom';
@@ -70,12 +71,6 @@ class Archives extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            timglist: [
-                {img: 'http://image.bygit.cn/timg-1.png'},
-                {img: 'http://image.bygit.cn/timg-2.png'},
-                {img: 'http://image.bygit.cn/timg-3.png'},
-                {img: 'http://image.bygit.cn/timg-4.png'}
-            ],
             timg: '',
             list: [],
             loading: true
@@ -120,7 +115,7 @@ class Archives extends PureComponent {
     }
 
     getTimg() {
-        const list = this.state.timglist;
+        const list = this.props.topImg;
         const num = this.getrand(0, list.length - 1);
         this.setState({timg: list[num].img})
     }
@@ -130,4 +125,10 @@ class Archives extends PureComponent {
     }
 }
 
-export default Archives
+const mapState = (state) => {
+    return {
+        topImg: state.getIn(['image', 'topImg'])
+    }
+};
+
+export default connect(mapState)(Archives)
