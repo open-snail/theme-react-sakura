@@ -5,6 +5,11 @@ export const SearchWrapper = styled.div`
         padding-top: 75px;
         background-color: #fff;
     }
+    @media(max-width:768px){
+        .pattern-center-blank{
+            padding-top: 50px;
+        }
+    }
 `;
 
 export const MainWrapper = styled.div`
@@ -46,6 +51,20 @@ export const MainWrapper = styled.div`
         text-align: center;
         i{
             background-color: #FE9600;
+        }
+    }
+    @media(max-width:768px){
+        padding-top:30px;
+        min-height:400px;
+        .page-header{
+            margin-bottom: 30px;
+                h1{
+                    font-size: 16px;
+                    font-weight: 400;
+                    border: 1px dashed #ddd;
+                    padding:10px;
+                    color: #828282;
+                }
         }
     }
 `;

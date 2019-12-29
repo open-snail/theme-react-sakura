@@ -6,6 +6,11 @@ export const ArticleWrapper = styled.div`
         padding-top: 75px;
         background-color: #fff;
     }
+    @media(max-width:768px){
+        .pattern-center-blank{
+            padding-top: 50px;
+        }
+    }
 `;
 
 export const ArticleTop = styled.div`
@@ -65,9 +70,29 @@ export const ArticleTop = styled.div`
             span{
                 color: #fff;
                 font-size: 14px;
+                img{
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 100%;
+                    float: left;
+                    margin-right: 12px;
+                }
             }
             .bull {
                 margin: 0 5px;
+            }
+        }
+    }
+    @media(max-width:768px){
+        .pattern-attachment-img{
+            height:280px;
+        }
+        .single-header{
+            .entry-title{
+                font-size: 24px;
+            }
+            .entry-census{
+                padding:0;
             }
         }
     }
@@ -365,6 +390,16 @@ export const MainWrapper = styled.div`
     }
     .flex-items{
         align-items: initial;
+    }
+    @media(max-width:768px){
+        padding:0 10px;
+        min-height:400px;
+        .cell{
+            margin:0;
+        }
+        .toc{
+            display:none;
+        }
     }
 `;
 

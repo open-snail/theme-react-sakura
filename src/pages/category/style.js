@@ -5,6 +5,11 @@ export const CategoryArticleWrapper = styled.div`
         padding-top: 75px;
         background-color: #fff;
     }
+    @media(max-width:768px){
+        .pattern-center-blank{
+            padding-top: 50px;
+        }
+    }
 `;
 
 export const ArticleTop = styled.div`
@@ -64,6 +69,17 @@ export const ArticleTop = styled.div`
             border: 0;
         }
     }
+    @media(max-width:768px){
+        .pattern-attachment-img{
+            height:280px;
+        }
+        .pattern-header {
+            top:40%;
+            h1{
+                font-size:24px;
+            }
+        }
+    }
 `;
 
 export const MainWrapper = styled.div`
@@ -96,7 +112,20 @@ export const MainWrapper = styled.div`
             border: 1px dashed #ddd;
             padding: 15px;
             color: #828282;
+        }
+    }
+    @media(max-width:768px){
+        padding-top:30px;
+        min-height:400px;
+        .page-header{
             margin-bottom: 30px;
+                h1{
+                    font-size: 16px;
+                    font-weight: 400;
+                    border: 1px dashed #ddd;
+                    padding:10px;
+                    color: #828282;
+                }
         }
     }
 `;

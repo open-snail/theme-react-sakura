@@ -5,6 +5,11 @@ export const LinksWrapper = styled.div`
         padding-top: 75px;
         background-color: #fff;
     }
+    @media(max-width:768px){
+        .pattern-center-blank{
+            padding-top: 50px;
+        }
+    }
 `;
 
 export const LinksTop = styled.div`
@@ -62,6 +67,17 @@ export const LinksTop = styled.div`
             margin: auto;
             padding: 0;
             border: 0;
+        }
+    }
+    @media(max-width:768px){
+        .pattern-attachment-img{
+            height:280px;
+        }
+        .pattern-header {
+            top:40%;
+            h1{
+                font-size:24px;
+            }
         }
     }
 `;
@@ -196,25 +212,41 @@ export const MainWrapper = styled.div`
             transform: translateY(0)
         }
     }
-    .links ul li:hover {
-        color: #27323a;
-        border-color: #FE9600;
-        border: 1px solid #FE9600;
+    @media(min-width:768px){
+        .links ul li:hover {
+            color: #27323a;
+            border-color: #FE9600;
+            border: 1px solid #FE9600;
+        }
+        .links ul li:hover:before {
+            width: 180%;
+        }
+        .links ul li:hover img {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+        }
+        .links ul li:hover .linkdes {
+            border-top: 1px dashed #fff;
+        }
     }
-    .links ul li:hover:before {
-        width: 180%;
+    @media(max-width:768px){
+        padding-top:30px;
+        min-height:400px;
+        .page-header{
+            margin-bottom: 30px;
+                h1{
+                    font-size: 16px;
+                    font-weight: 400;
+                    border: 1px dashed #ddd;
+                    padding:10px;
+                    color: #828282;
+                }
+        }
     }
-    .links ul li:hover img {
-        transform: rotate(360deg);
-        -webkit-transform: rotate(360deg);
-        -moz-transform: rotate(360deg);
-        -o-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-    }
-    .links ul li:hover .linkdes {
-        border-top: 1px dashed #fff;
-    }
-    @media (max-width: 860px){
+    @media (max-width: 768px){
         .links ul li {
             width: 48.6%;
         }

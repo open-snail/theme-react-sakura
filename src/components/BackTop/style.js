@@ -12,6 +12,9 @@ export const Top = styled.div`
         cursor: pointer;
         -webkit-animation: float 2s linear infinite;
         animation: float 2s linear infinite
+        @media(max-width:768px){
+            display:none;
+        }
         .ant-back-top{
             position: absolute;
             bottom: 0;
@@ -26,7 +29,11 @@ export const Top = styled.div`
             }
         }
     }
-    
+    @media(min-width:768px){
+        .phone-backtop{
+            display:none;
+        }
+    }
     .goTop {
         top: -950px;
     }

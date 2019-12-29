@@ -7,10 +7,6 @@ export const Headers = styled.div`
             background: rgba(255,255,255,.95);
             box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
         }
-    } 
-    &:hover .nav-wrapper{
-        background: rgba(255,255,255,.95);
-        box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
     }
     .search-form--modal {
         -webkit-transition: visibility .25s ease,opacity .25s ease;
@@ -124,6 +120,29 @@ export const Headers = styled.div`
             transform: scale(1)
         }
     }
+    @media (min-width: 768px){
+        &:hover .nav-wrapper{
+            background: rgba(255,255,255,.95);
+            box-shadow: 0 1px 40px -8px rgba(0,0,0,.5);
+        }
+    }
+    @media(max-width:768px){
+        .search-form.is-visible{
+            background-size: 30%;
+        }
+        .search-form--modal .search-form__inner p{
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        .search-form i{
+            font-size: 22px;
+            bottom: 11px;
+        }
+        .search-form input{
+            padding: 10px 10px 10px 45px;
+            font-size: 18px;
+        }
+    }
 `;
 
 export const NavWrapper = styled.div`
@@ -134,6 +153,10 @@ export const NavWrapper = styled.div`
     padding:0 30px
     z-index:999;
     transition: all .4s ease;
+    @media (max-width: 768px){
+        height: 50px;
+        padding:0 15px
+    }
 `;
 
 export const NavLeft = styled.div`
@@ -146,17 +169,48 @@ export const NavLeft = styled.div`
         font-size: 20px;
         font-weight: 800;
     }
+    i{
+        font-size:24px;
+        color:#666666;
+        cursor: pointer;
+        display:none;
+    }
+    i:hover{
+        color:#fe9600;
+    }
     a:hover{
         color:#fe9600;
+    }
+    @media (max-width: 768px){
+        height:50px;
+        line-height:50px;
+        a{
+            display:none;
+        }
+        i{
+            display: inline-block;
+        }
     }
 `;
 export const NavRight = styled.div`
     float:right;
     height:75px;
+    .flex-items{
+        height:75px;
+    }
+    @media (max-width: 768px){
+        height:50px;
+        .flex-items{
+            height:50px;
+        }
+    }
 `;
 
 export const Nav = styled.ul`
     height:75px;
+    @media (max-width: 768px){
+        display:none;
+    }
 `;
 
 export const NavItem = styled.li`
@@ -213,10 +267,9 @@ export const NavItem = styled.li`
 `;
 
 export const IconBox = styled.div`
-    margin-left:20px;
     i{
         font-size:24px;
-        margin-right:20px;
+        margin-left:20px;
         color:#666666;
         cursor: pointer;
     }

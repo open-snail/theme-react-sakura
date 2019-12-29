@@ -1,8 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Footers} from './style';
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
-class Footer extends Component {
+class Footer extends PureComponent {
     render() {
+        const {copyright, domain, icp, title} = this.props.confing.toJS();
         return (
             <Footers>
                 <div className='site-info'>
@@ -10,11 +13,10 @@ class Footer extends Component {
                         <p className='foo-logo'/>
                         <p className='name'>
                             <span>
-                                Crafted with <i className='iconfont icon-heartarrow'/> by <a
-                                href="http://www.bygit.cn">Mashiro</a>
+                                <a href={domain} target={'_blank'}>{copyright}</a>
                             </span>
                         </p>
-                        <p>© 2019 皮皮轩の小屋 沪ICP备17028213号</p>
+                        <p>© 2019 {title} {icp}</p>
                     </div>
                     <p className="footer-sponsor">
                         <a href="https://console.upyun.com/register/?invite=r1EuSLN-f" target={'_blank'}>
@@ -30,4 +32,10 @@ class Footer extends Component {
     }
 }
 
-export default Footer;
+const mapStateToProps = (state) => {
+    return {
+        confing: state.getIn(['header', 'confing']),
+    }
+};
+
+export default connect(mapStateToProps)(withRouter(Footer));

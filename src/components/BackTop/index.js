@@ -18,6 +18,9 @@ class ToTop extends PureComponent {
                     <BackTop visibilityHeight={600} onClick={this.toTopfun}/>
                     <img src={require('../../statics/images/scroll.png')} alt=""/>
                 </div>
+                <div className='phone-backtop'>
+                    <BackTop visibilityHeight={600}/>
+                </div>
             </Top>
         )
     }

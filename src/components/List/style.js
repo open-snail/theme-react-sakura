@@ -132,4 +132,31 @@ export const SiteMain = styled.div`
         opacity: 1;
         visibility: visible;
     }
+    @media(max-width:768px){
+        .feature{
+            img{
+                width: 52px;
+                height: 52px;
+            }
+        }
+        .entry-title{
+            margin: 0 0 0 65px;
+            font-size: 16px;
+            line-height: 30px;
+        }
+        .p-time {
+            position: relative;
+            margin: -15px 0 0 65px;
+        }        
+        .post-list p{
+            margin: 20px 0 0 65px;
+            font-size: 14px;
+            height: 30px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .entry-footer{
+            display:none;
+        }
+    }
 `;

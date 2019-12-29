@@ -6,6 +6,9 @@ export const PagWrapper = styled.div`
     text-align: center;
     margin: 40px 0 80px;
     display: inline-block;
+    @media(max-width:768px){
+        margin: 0;
+    }
     .btn{
         display: inline-block;
         cursor: pointer;
@@ -14,11 +17,13 @@ export const PagWrapper = styled.div`
         border-radius: 50px;
         color: #adadad;
     }
-    .btn:hover{
-        border: 1px solid orange;
-        color: #FE9600;
-        border-color: #FE9600;
-        box-shadow: 0 0 4px rgba(255,165,0,.85);
+    @media(min-width:768px){
+        .btn:hover{
+            border: 1px solid orange;
+            color: #FE9600;
+            border-color: #FE9600;
+            box-shadow: 0 0 4px rgba(255,165,0,.85);
+        }
     }
     p{
         color: #989898;

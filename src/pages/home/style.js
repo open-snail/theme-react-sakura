@@ -45,6 +45,9 @@ export const Focusinfo = styled.div`
     -moz-transition: .4s ease all;
     -o-transition: .4s ease all;
     transition: .4s ease all;  
+    @media (max-width: 768px){
+        display: none;
+    }
     .glitch{
         font-family: 'Ubuntu',sans-serif;
         position: relative;
@@ -214,6 +217,9 @@ export const Focusinfo = styled.div`
         margin: 0;
         font-family: 'Ubuntu',sans-serif;
         font-weight: 700;
+        span{
+            margin:0 10px;
+        }
     }
     .top-social_v2 {
         height: 35px;
@@ -278,11 +284,13 @@ export const BlogList = styled.div`
         box-shadow: 0 1px 20px -6px rgba(0,0,0,.5);
         opacity: 0;
         transition: box-shadow .3s ease;
-        &:hover{
-            box-shadow: 0 5px 10px 5px rgba(110,110,110,.4);
-        }
-        &:hover img{
-            transform: scale(1.1);
+        @media (min-width: 768px){
+            &:hover{
+                box-shadow: 0 5px 10px 5px rgba(110,110,110,.4);
+            }
+            &:hover img{
+                transform: scale(1.1);
+            }
         }
         .post-thumb {
             float: right;
@@ -337,7 +345,6 @@ export const BlogList = styled.div`
                 font-size: 16px;
                 font-weight: bold;
                 color: #504e4e;
-                line-height:20px;
                 transition: color .2s ease-out,border .2s ease-out,opacity .2s ease-out;
             }
             &:hover h3{
@@ -407,9 +414,51 @@ export const BlogList = styled.div`
             transform: translateY(0)
         }
     }
+    @media (max-width: 768px){
+        .blog-item{
+            margin: 0;
+            height: auto;
+            padding: 0;
+            border: 0;
+            box-shadow: none;
+            .post-thumb{
+                width: 100%;
+                left: 0;
+                clear: initial;
+                a{
+                    height: 210px;
+                    border-radius: 10px;
+                }
+            }
+            .post-content-wrap{
+                clear: initial;
+                width: 100%;
+                left: 0;
+                text-align: left;
+                margin: 0;
+                padding: 20px;
+                float: none;
+                box-shadow: none;
+                border-top: 0;
+                .post-title{
+                    margin:10px 0;
+                    font-size: 14px;
+                }
+                .float-content{
+                    p{
+                        margin:10px 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
 `;
 
 export const FeatureWrapper = styled.div`
+    @media (max-width: 768px){
+        display: none;
+    }
     .top-feature-row{
         .top-feature-item{
             position: relative;
@@ -499,6 +548,12 @@ export const FeatureTitle = styled.div`
         padding-bottom: 5px;
         margin-bottom: 30px;
         border-bottom: 1px dashed #ececec;
+    }
+    @media( max-width:768px ){
+        margin-top: 15px;
+        h1{
+            margin-bottom: 15px;
+        }
     }
 `;
 

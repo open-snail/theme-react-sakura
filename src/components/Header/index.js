@@ -19,12 +19,15 @@ class Header extends PureComponent {
 
     render() {
         const {isVisible, value} = this.state;
+        const {title, domain} = this.props.confing.toJS();
+        if (title) document.title = title;
         return (
             <Headers>
                 <Affix>
                     <NavWrapper className='nav-wrapper'>
                         <NavLeft className='ellipsis'>
-                            <a href="http://www.bygit.cn/#/">皮皮轩の小屋</a>
+                            <a href={domain}>{title}</a>
+                            <Icon type="menu"/>
                         </NavLeft>
                         <NavRight>
                             <div className='flex-items'>
@@ -99,6 +102,8 @@ class Header extends PureComponent {
 
     componentDidMount() {
         this.props.getCategory();
+        this.props.getUser();
+        this.props.getConfing();
     }
 
     keypress(e) {
@@ -147,12 +152,19 @@ class Header extends PureComponent {
 const mapStateToProps = (state) => {
     return {
         category: state.getIn(['header', 'category']),
+        confing: state.getIn(['header', 'confing']),
     }
 };
 const mapDispatchToProps = (dispatch) => {
     return {
         getCategory() {
             dispatch(actionCreators.getCategory());
+        },
+        getUser() {
+            dispatch(actionCreators.getUser());
+        },
+        getConfing() {
+            dispatch(actionCreators.getConfing());
         }
     }
 };

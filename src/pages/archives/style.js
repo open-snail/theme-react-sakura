@@ -5,6 +5,11 @@ export const ArchivesWrapper = styled.div`
         padding-top: 75px;
         background-color: #fff;
     }
+     @media(max-width:768px){
+        .pattern-center-blank{
+            padding-top: 50px;
+        }
+    }
 `;
 
 export const ArticleTop = styled.div`
@@ -62,6 +67,17 @@ export const ArticleTop = styled.div`
             margin: auto;
             padding: 0;
             border: 0;
+        }
+    }
+    @media(max-width:768px){
+        .pattern-attachment-img{
+            height:280px;
+        }
+        .pattern-header {
+            top:40%;
+            h1{
+                font-size:24px;
+            }
         }
     }
 `;
@@ -332,5 +348,19 @@ export const MainWrapper = styled.div`
     
     .danger .arrow:after {
         border-right-color: #f05050;
+    }
+    @media(max-width:768px){
+        padding-top:30px;
+        min-height:400px;
+        .page-header{
+            margin-bottom: 30px;
+                h1{
+                    font-size: 16px;
+                    font-weight: 400;
+                    border: 1px dashed #ddd;
+                    padding:10px;
+                    color: #828282;
+                }
+        }
     }
 `;
