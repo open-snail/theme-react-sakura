@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import {ArticleWrapper, ArticleTop, MainWrapper} from './style';
@@ -16,20 +17,15 @@ class Article extends PureComponent {
             content: '',
             timg: '',
             id: props.match.params.id,
-            userInfo: '',
-            tocify: new Tocify(),
-            topImg: [
-                {img: 'http://image.bygit.cn/timg-1.png'},
-                {img: 'http://image.bygit.cn/timg-2.png'},
-                {img: 'http://image.bygit.cn/timg-3.png'},
-                {img: 'http://image.bygit.cn/timg-4.png'}
-            ]
+            tocify: new Tocify()
         }
     }
 
     render() {
         const {content} = this.state;
-        const {userInfo} = this.state;
+        const {name, avatar} = this.props.userInfo.toJS();
+        this.state.tocify && this.state.tocify.reset();
+        if (content.title) document.title = content.title;
         return (
             <ArticleWrapper>
                 <div className='pattern-center-blank'/>
@@ -39,9 +35,9 @@ class Article extends PureComponent {
                     </div>
                     <div className='single-header'>
                         <h1 className='entry-title'>{content.title}</h1>
-                        {content && userInfo && <p className='entry-census'>
-                            <span><img src={userInfo.avatar} alt=""/></span>
-                            <span>{userInfo.name}</span>
+                        {content && <p className='entry-census'>
+                            <span><img src={avatar} alt=""/></span>
+                            <span>{name}</span>
                             <span className="bull">·</span>
                             <span>{getTime(content.createTime)}</span>
                             <span className="bull">·</span>
@@ -50,7 +46,7 @@ class Article extends PureComponent {
                     </div>
                 </ArticleTop>
                 <MainWrapper>
-                    {content && userInfo ?
+                    {content ?
                         <div className='flex-items'>
                             <div className='cell'>
                                 <div className='entry-content'
@@ -78,12 +74,11 @@ class Article extends PureComponent {
             highlight: code => hljs.highlightAuto(code).value
         });
         this.getDetail(this.state.id);
-        this.getUser();
         this.getTimg();
     }
 
     getTimg() {
-        const list = this.state.topImg;
+        const list = this.props.topImg;
         const num = this.getrand(0, list.length - 1);
         this.setState({
             timg: list[num].img
@@ -100,16 +95,6 @@ class Article extends PureComponent {
         });
     }
 
-    getUser() {
-        axios.get('/auth/master/v1/get').then((res) => {
-            if (res.success === 1) {
-                this.setState({
-                    userInfo: res.model
-                })
-            }
-        })
-    }
-
     getrand(m, n) {
         return Math.floor(Math.random() * (n - m + 1)) + m;
     }
@@ -123,4 +108,11 @@ class Article extends PureComponent {
     }
 }
 
-export default Article;
+const mapState = (state) => {
+    return {
+        topImg: state.getIn(['image', 'topImg']),
+        userInfo: state.getIn(['header', 'userInfo']),
+    }
+};
+
+export default connect(mapState)(Article);

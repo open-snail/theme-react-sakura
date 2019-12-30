@@ -13,8 +13,7 @@ export const getBanner = () => {
             {img: 'http://image.bygit.cn/banner-1.png'},
             {img: 'http://image.bygit.cn/banner-2.png'},
             {img: 'http://image.bygit.cn/banner-3.png'},
-            {img: 'http://image.bygit.cn/banner-4.png'},
-            {img: 'http://image.bygit.cn/banner-5.png'}
+            {img: 'http://image.bygit.cn/banner-4.png'}
         ];
         dispatch(setBanner(bannerList));
     }

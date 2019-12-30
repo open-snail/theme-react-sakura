@@ -170,7 +170,7 @@ export const NavLeft = styled.div`
         font-weight: 800;
     }
     i{
-        font-size:24px;
+        font-size:22px;
         color:#666666;
         cursor: pointer;
         display:none;
@@ -275,5 +275,109 @@ export const IconBox = styled.div`
     }
     i:hover{
         color:#fe9600;
+    }
+`;
+
+export const Mask = styled.div`
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 998;
+    &.hidden{
+        display:none;
+    }
+    &.show{
+        display:block;
+    }
+`;
+
+export const MoNav = styled.div`
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    background-color: #ffffff;
+    width: 55%;
+    z-index: 999;
+    transition-duration: .5s;
+    overflow-y: scroll;
+    -webkit-transform: translateX(-100%) translateY(0px);
+    transform: translateX(-100%) translateY(0px);
+    &.open{
+        transform: translateX(0px) translateY(0px);
+        -webkit-transform: translateX(0px) translateY(0px);
+    }
+    .m-avatar {
+        width:100%;
+        height: auto;
+        padding: 30px 0 20px;
+        text-align: center;
+    }
+    .m-avatar img {
+        width: 90px;
+        height: 90px;
+        max-width: 90px;
+        border-radius: 100%;
+    }
+    .name{
+        margin-bottom:10px;
+        padding:0 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #333;
+    }
+    .info{
+        margin-bottom:10px;
+        padding:0 15px 15px 15px;
+        text-align: center;
+        font-size: 13px;
+        color: #333;
+        position: relative;
+        &:after{
+            position: absolute;
+            right:0px;
+            bottom: 0;
+            left:0px;
+            height: 1px;
+            content: '';
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+            background-color:#f1f1f1;   
+        }
+    }
+    .menu{
+        .item{
+            position: relative;
+            padding:10px 15px;
+            color: #333;
+            font-size: 14px;
+            span{
+                margin-left:5px;
+            }
+            i{
+                font-size: 12px;
+            }
+            &:after{
+                position: absolute;
+                right:0px;
+                bottom: 0;
+                left:0px;
+                height: 1px;
+                content: '';
+                -webkit-transform: scaleY(.5);
+                transform: scaleY(.5);
+                background-color:#f1f1f1;   
+            }
+        }
+    }
+    .sub-menu{
+        padding-left:15px;
+        .item{
+            padding:5px 10px;
+            font-size: 13px;
+        }
     }
 `;

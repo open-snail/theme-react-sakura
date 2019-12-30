@@ -392,7 +392,7 @@ export const MainWrapper = styled.div`
         align-items: initial;
     }
     @media(max-width:768px){
-        padding:0 10px;
+        padding:10px;
         min-height:400px;
         .cell{
             margin:0;

@@ -3,22 +3,21 @@ import {Anchor} from 'antd';
 import {last} from 'lodash';
 
 const {Link} = Anchor;
+
 const handleClick = (e, link) => {
     e.preventDefault();
     // console.log(link);
 };
 
-
 export default class Tocify {
-
     constructor() {
         this.anchors = [];
         this.tocItems = [];
+        this.index = 0;
     }
 
-    add(text, level, id = '') {
-        const count = this.anchors.filter(anchor => anchor === text).length;
-        const anchor = id || (count ? `${text}${count}` : text);
+    add(text, level) {
+        const anchor = `toc${level}${++this.index}`;
         this.anchors.push(anchor);
         const item = {anchor, level, text};
         const items = this.tocItems;
@@ -54,6 +53,7 @@ export default class Tocify {
     reset = () => {
         this.tocItems = [];
         this.anchors = [];
+        this.index = 0;
     };
 
     renderToc(items) { // 递归 render
