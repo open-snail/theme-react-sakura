@@ -43,9 +43,17 @@ export const getConfing = () => {
                     }
                     if (item.configKey === "keywords") {
                         data.keywords = item.configValue;
+                        let oMeta = document.createElement('meta');
+                        oMeta.name = 'keywords';
+                        oMeta.content = item.configValue;
+                        document.getElementsByTagName('head')[0].appendChild(oMeta);
                     }
                     if (item.configKey === "description") {
                         data.description = item.configValue;
+                        let Meta = document.createElement('meta');
+                        Meta.name = 'description';
+                        Meta.content = item.configValue;
+                        document.getElementsByTagName('head')[0].appendChild(Meta);
                     }
                     if (item.configKey === "domain") {
                         data.domain = item.configValue;
