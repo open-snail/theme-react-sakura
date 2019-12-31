@@ -228,7 +228,7 @@ export const MainWrapper = styled.div`
         font-size: 12px;
         display: inline-block;
         text-align: center;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
         border: 1px solid transparent;
     }
     .info .title {

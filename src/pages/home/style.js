@@ -231,7 +231,7 @@ export const Focusinfo = styled.div`
         height: 35px;
         float: left;
         margin:0 6px;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
     }
     .top-social_v2 img {
         height: 35px;

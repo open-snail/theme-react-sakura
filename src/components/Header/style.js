@@ -76,7 +76,7 @@ export const Headers = styled.div`
         background: 0 0;
         top: 20px;
         right: 15px;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
     }
     .search_close:before, .search_close:after {
         background-color: #222;
@@ -172,7 +172,7 @@ export const NavLeft = styled.div`
     i{
         font-size:22px;
         color:#666666;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
         display:none;
     }
     i:hover{
@@ -222,7 +222,7 @@ export const NavItem = styled.li`
         height:40px;
         line-height:40px;
         position: relative;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
     }
     .nav-item i{
         margin-right:5px;
@@ -271,10 +271,16 @@ export const IconBox = styled.div`
         font-size:24px;
         margin-left:20px;
         color:#666666;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto !important;
     }
     i:hover{
         color:#fe9600;
+    }
+    img{
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin-left:20px;
     }
 `;
 

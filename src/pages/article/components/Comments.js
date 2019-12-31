@@ -3,7 +3,7 @@ import {CommentsWrapper, CommentTextarea} from '../style';
 import {getFormatTime, getTime} from '../../../lib/public';
 import {Pagination, message} from 'antd';
 import axios from "axios";
-import {setToken} from '../../../lib/auth';
+import {loginGithubHandel} from '../../../lib/auth';
 import openWindow from '../../../lib/openWindow';
 
 class Comments extends PureComponent {
@@ -156,31 +156,9 @@ class Comments extends PureComponent {
         axios.get('/auth/github/v1/get').then((res) => {
             if (res.success === 1) {
                 openWindow(res.model.authorizeUrl, "绑定GitHub", 540, 540);
-                window.addEventListener("message", this.loginGithubHandel, false);
+                window.addEventListener("message", loginGithubHandel, false);
             }
         });
-    }
-
-    loginGithubHandel(e) {
-        const {socialId, avatar, name, htmlUrl} = e.data;
-        if (socialId) {
-            axios({
-                method: 'post',
-                url: '/auth/user/v1/login',
-                data: {
-                    socialId: socialId,
-                    avatar: avatar,
-                    name: name,
-                    htmlUrl: htmlUrl
-                }
-            }).then((res) => {
-                if (res.success === 1) {
-                    setToken(res.model.token);
-                    message.success('登录成功');
-                }
-            });
-            window.removeEventListener("message", this.loginGithubHandel, false);
-        }
     }
 
     getComments(id, page) {

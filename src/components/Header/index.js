@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {Headers, NavWrapper, NavLeft, NavRight, Nav, NavItem, IconBox, MoNav, Mask} from './style';
 import {actionCreators} from './store';
 import {Icon, Menu, Dropdown, Affix, message} from 'antd';
+import {getAvatar, setAvatar, setToken} from '../../lib/auth';
+import axios from "axios";
+import openWindow from "../../lib/openWindow";
 
 class Header extends PureComponent {
     constructor(props) {
@@ -11,16 +14,19 @@ class Header extends PureComponent {
         this.state = {
             isVisible: false,
             value: '',
-            open:false
+            open: false,
+            isUser: false
         };
         this.handleClick = this.handleClick.bind(this);
         this.keypress = this.keypress.bind(this);
         this.setValue = this.setValue.bind(this);
         this.openMonav = this.openMonav.bind(this);
+        this.login = this.login.bind(this);
+        this.loginGithubHandel = this.loginGithubHandel.bind(this);
     }
 
     render() {
-        const {isVisible, value, open} = this.state;
+        const {isVisible, value, open, isUser} = this.state;
         const {category} = this.props;
         const {title, domain} = this.props.confing.toJS();
         const {name, introduction, avatar} = this.props.userInfo.toJS();
@@ -76,13 +82,15 @@ class Header extends PureComponent {
                                 </Nav>
                                 <IconBox className='flex-items'>
                                     <Icon type="search" onClick={this.handleClick}/>
-                                    <Icon type="user"/>
+                                    {isUser || getAvatar()? <img src={getAvatar()} alt=""/> :
+                                        <Icon type="user" onClick={this.login}/>}
                                 </IconBox>
                             </div>
                         </NavRight>
                     </NavWrapper>
                 </Affix>
-                <div className={isVisible ? 'search-form search-form--modal is-visible' : 'search-form search-form--modal'}>
+                <div
+                    className={isVisible ? 'search-form search-form--modal is-visible' : 'search-form search-form--modal'}>
                     <div className='search-form__inner'>
                         <div className='box'>
                             <p className="micro mb-">想要找点什么呢？</p>
@@ -99,8 +107,8 @@ class Header extends PureComponent {
                     </div>
                     <div className="search_close" onClick={this.handleClick}/>
                 </div>
-                <Mask className={open?'show':'hidden'} onClick={this.openMonav}/>
-                <MoNav className={open?'mo-nav open':'mo-nav'}>
+                <Mask className={open ? 'show' : 'hidden'} onClick={this.openMonav}/>
+                <MoNav className={open ? 'mo-nav open' : 'mo-nav'}>
                     <div className='m-avatar'><img src={avatar} alt=""/></div>
                     <p className='name ellipsis'>{name}</p>
                     <p className='info ellipsis'>{introduction}</p>
@@ -117,10 +125,11 @@ class Header extends PureComponent {
                                 <span>分类</span>
                             </span>
                             <ul className='sub-menu'>
-                                {category.map((item,index)=>{
-                                    return(
+                                {category.map((item, index) => {
+                                    return (
                                         <li key={index}>
-                                            <Link to={'/category/' + item.get('id')} className='item flex-items' onClick={this.openMonav}>
+                                            <Link to={'/category/' + item.get('id')} className='item flex-items'
+                                                  onClick={this.openMonav}>
                                                 <span>{item.get('name')}</span>
                                             </Link>
                                         </li>
@@ -170,12 +179,45 @@ class Header extends PureComponent {
         }
     }
 
+    login() {
+        axios.get('/auth/github/v1/get').then((res) => {
+            if (res.success === 1) {
+                openWindow(res.model.authorizeUrl, "绑定GitHub", 540, 540);
+                window.addEventListener("message", this.loginGithubHandel, false);
+            }
+        });
+    }
+
+    loginGithubHandel(e) {
+        const {socialId, avatar, name, htmlUrl} = e.data;
+        if (socialId) {
+            axios({
+                method: 'post',
+                url: '/auth/user/v1/login',
+                data: {
+                    socialId: socialId,
+                    avatar: avatar,
+                    name: name,
+                    htmlUrl: htmlUrl
+                }
+            }).then((res) => {
+                if (res.success === 1) {
+                    setToken(res.model.token);
+                    setAvatar(res.model.avatar);
+                    this.setState({isUser: true});
+                    message.success('登录成功');
+                }
+            });
+            window.removeEventListener("message", this.loginGithubHandel, false);
+        }
+    }
+
     setValue(e) {
         const value = e.target.value;
         this.setState({value: value});
     }
 
-    openMonav(){
+    openMonav() {
         this.setState((prevState) => ({
             open: !prevState.open
         }))

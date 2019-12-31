@@ -9,7 +9,7 @@ export const Top = styled.div`
         width: 70px;
         height: 900px;
         transition: all .5s 0.3s ease-in-out;
-        cursor: pointer;
+        cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
         -webkit-animation: float 2s linear infinite;
         animation: float 2s linear infinite
         @media(max-width:768px){

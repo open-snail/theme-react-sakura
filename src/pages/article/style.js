@@ -455,7 +455,7 @@ export const CommentsWrapper = styled.div`
                     line-height: 20px;
                     padding: 0 6px;
                     border-radius: 3px;
-                    cursor: pointer;
+                    cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
                     opacity: 0;
                     transition: color .2s ease-out,border .2s ease-out,opacity .2s ease-out;
                 }
@@ -577,7 +577,7 @@ export const CommentTextarea = styled.div`
             box-shadow: none;
             border: 1px solid #ccc;
             text-shadow: none;
-            cursor: pointer;
+            cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
         }
         input:hover{
             border: 1px solid #fe9600;
