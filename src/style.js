@@ -110,4 +110,9 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
     }
+    #player .aplayer-lrc-current {
+        color: #fe9600;
+        font-size: 15px;
+        font-weight: bold;
+    }
 `;
