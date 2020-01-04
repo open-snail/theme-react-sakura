@@ -11,6 +11,7 @@ import ToTop from './components/BackTop';
 import Router from './router';
 import APlayer from 'aplayer';
 import 'aplayer/dist/APlayer.min.css';
+import axios from "axios";
 
 class App extends PureComponent {
     render() {
@@ -31,27 +32,25 @@ class App extends PureComponent {
     }
 
     componentDidMount() {
-        const layer = new APlayer({
-            container: document.getElementById('player'),
-            fixed: true,
-            theme: '#fe9600',
-            listMaxHeight: 90,
-            listFolded: false,
-            lrcType: 3,
-            audio: [
-                {
-                    name: '清新的小女孩 (For Ma) [缅甸抖音曲]',
-                    artist: 'July Tun',
-                    url: 'http://image.bygit.cn/July%20Tun%20-%20%E6%B8%85%E6%96%B0%E7%9A%84%E5%B0%8F%E5%A5%B3%E5%AD%A9%20%28For%20Ma%29%20%5B%E7%BC%85%E7%94%B8%E6%8A%96%E9%9F%B3%E6%9B%B2%5D.mp3',
-                    cover: 'http://p1.music.126.net/85K1NQ3EvON42Ufj3oOt6Q==/109951164546190942.jpg?param=130y130',
-                    theme: '#fe9600',
-                    lrc: 'http://image.bygit.cn/%E6%AD%8C%E8%AF%8D.lrc'
-                }
-            ]
-        });
-        setTimeout(() => {
-            layer.play();
-        }, 2000)
+        this.getMuisic();
+    }
+
+    getMuisic(){
+        axios.get('/music/music/v1/list').then((res) => {
+            const options = {
+                container: document.getElementById('player'),
+                fixed: true,
+                theme: '#fe9600',
+                listMaxHeight: '300px',
+                listFolded: false,
+                lrcType: 3,
+                audio:res.models
+            };
+            const ap = new APlayer(options);
+            ap.on('ended', function () {
+                console.log('player ended');
+            });
+        })
     }
 }
 

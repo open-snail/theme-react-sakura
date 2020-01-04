@@ -9,7 +9,7 @@ class Home extends PureComponent {
         return (
             <HomeWrapper>
                 <Banner/>
-                <MainWrapper>
+                <MainWrapper id='content'>
                     <Feature/>
                     <ListWrapper/>
                 </MainWrapper>

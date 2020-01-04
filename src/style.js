@@ -1,6 +1,22 @@
 import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+    ::selection {
+        background: #A0DAD0;
+        color: #fff;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #ffffff;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #FE9600;
+    }
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 8px;
+        background-color: #B9B9B9;
+    }
     *{
         box-sizing: border-box;
     }

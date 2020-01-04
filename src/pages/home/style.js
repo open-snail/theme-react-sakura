@@ -16,6 +16,139 @@ export const BannerWrapper = styled.div`
         background-attachment: fixed;
         background-image: url(${grid});
     }
+    @keyframes move_wave { 
+        0% { 
+            transform: translateX(0) translateZ(0) scaleY(1) 
+        } 
+        50% { 
+            transform: translateX(-25%) translateZ(0) scaleY(0.55) 
+        } 
+        100% { 
+            transform: translateX(-50%) translateZ(0) scaleY(1) 
+        } 
+    } 
+    .waveWrapper {
+        overflow: hidden; 
+        position: absolute; 
+        left: 0; 
+        right: 0; 
+        bottom: 0; 
+        top: 0; 
+        margin: auto; 
+    } 
+    .waveWrapperInner { 
+        position: absolute; 
+        width: 100%; 
+        overflow: hidden; 
+        height: 100%; 
+        bottom: -1px; 
+    } 
+    .bgTop { 
+        z-index: 15; 
+        opacity: 0.5; 
+    } 
+    .bgMiddle { 
+        z-index: 10; 
+        opacity: 0.75; 
+    } 
+    .bgBottom {
+        z-index: 5; 
+    } 
+    .wave{
+        position: absolute; 
+        left: 0; 
+        width: 200%; 
+        height: 100%; 
+        background-repeat: repeat no-repeat; 
+        background-position: 0 bottom; 
+        transform-origin: center bottom; 
+    } 
+    .waveTop { 
+        background-size: 50% 100px; 
+    } 
+    .waveAnimation .waveTop { 
+        animation: move-wave 3s; 
+        -webkit-animation: move-wave 3s; 
+        -webkit-animation-delay: 1s; 
+        animation-delay: 1s; 
+    } 
+    .waveMiddle { 
+        background-size: 50% 120px; 
+    } 
+    .waveAnimation .waveMiddle { 
+        animation: move_wave 10s linear infinite; 
+    } 
+    .waveBottom { 
+        background-size: 50% 100px; 
+    } 
+    .waveAnimation .waveBottom { 
+        animation: move_wave 15s linear infinite; 
+    } 
+    .waveTop{
+        background-image: url('${require('../../statics/images/wave-top.png')}');
+    }
+    .waveMiddle{
+        background-image: url('${require('../../statics/images/wave-mid.png')}');
+    }
+    .waveBottom{
+        background-image: url('${require('../../statics/images/wave-bot.png')}');
+    }
+    .headertop-down {
+        position: absolute;
+        bottom: 80px;
+        left: 50%;
+        cursor: pointer;
+        z-index: 90;
+        animation: float 2s linear infinite;
+        i{
+            font-size: 32px;
+            color: #fff;
+            -ms-transform: scale(1.5,1);
+            -webkit-transform: scale(1.5,1);
+            transform: scale(1.5,1)
+        }
+    }
+    @-webkit-keyframes float {
+        0% {
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+    
+        50% {
+            -webkit-transform: translateY(-6px);
+            transform: translateY(-6px)
+        }
+    
+        100% {
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+    }
+    
+    @keyframes float {
+        0% {
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0)
+        }
+    
+        50% {
+            -webkit-transform: translateY(-6px);
+            -ms-transform: translateY(-6px);
+            transform: translateY(-6px)
+        }
+    
+        100% {
+            -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+            transform: translateY(0)
+        }
+    }
+    @media (max-width: 768px) {
+        #banner_wave_1,#banner_wave_2 {
+            display:none
+        }
+    }
 `;
 
 export const Center = styled.div`

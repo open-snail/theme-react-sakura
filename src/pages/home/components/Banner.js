@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 import {BannerWrapper, Center, Focusinfo} from '../style';
 import {actionCreators} from '../store';
+import {scrollAnimation} from '../../../lib/auth';
 
 class Banner extends PureComponent {
     render() {
@@ -9,6 +10,20 @@ class Banner extends PureComponent {
         const {htmlUrl, weibo, csdn, twitter, facebook, qq, email, introduction} = this.props.userInfo.toJS();
         return (
             <BannerWrapper>
+                <div className="waveWrapper waveAnimation">
+                    <div className="waveWrapperInner bgTop">
+                        <div className="wave waveTop"/>
+                    </div>
+                    <div className="waveWrapperInner bgMiddle">
+                        <div className="wave waveMiddle"/>
+                    </div>
+                    <div className="waveWrapperInner bgBottom">
+                        <div className="wave waveBottom"/>
+                    </div>
+                </div>
+                <div className='headertop-down animated'>
+                    <span onClick={this.headertop_down}><i className='iconfont icon-chevrondown'/></span>
+                </div>
                 <Center style={{backgroundImage: banner, height: innerHeight + 'px'}}>
                     {htmlUrl && <Focusinfo>
                         <h1 className='glitch' data-text="Hi, Mashiro!">Hi, Mashiro!</h1>
@@ -74,6 +89,11 @@ class Banner extends PureComponent {
     mail_me(email) {
         const e = `mailto:${email}`;
         window.open(e)
+    }
+
+    headertop_down() {
+        const content = document.getElementById('content').offsetTop;
+        scrollAnimation(0,content);
     }
 }
 

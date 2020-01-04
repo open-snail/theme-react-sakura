@@ -10,10 +10,10 @@ const setBanner = (data) => ({
 export const getBanner = () => {
     return (dispatch) => {
         const bannerList = [
-            {img: 'http://image.bygit.cn/banner-1.png'},
-            {img: 'http://image.bygit.cn/banner-2.png'},
-            {img: 'http://image.bygit.cn/banner-3.png'},
-            {img: 'http://image.bygit.cn/banner-4.png'}
+            {img: require('../../../statics/images/banner-1.png')},
+            {img: require('../../../statics/images/banner-2.png')},
+            {img: require('../../../statics/images/banner-3.png')},
+            {img: require('../../../statics/images/banner-4.png')}
         ];
         dispatch(setBanner(bannerList));
     }
