@@ -49,9 +49,6 @@ export function loginGithubHandel(e) {
 }
 
 export function scrollAnimation(currentY, targetY) {
-    // 获取当前位置方法
-    // const currentY = document.documentElement.scrollTop || document.body.scrollTop
-
     // 计算需要移动的距离
     let needScrollTop = targetY - currentY;
     let _currentY = currentY;

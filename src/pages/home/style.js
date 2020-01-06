@@ -145,7 +145,7 @@ export const BannerWrapper = styled.div`
         }
     }
     @media (max-width: 768px) {
-        #banner_wave_1,#banner_wave_2 {
+        .waveWrapper{
             display:none
         }
     }
