@@ -91,6 +91,8 @@ class Article extends PureComponent {
                 this.setState({
                     content: res.model
                 })
+            }else {
+                this.props.history.push('/404');
             }
         });
     }

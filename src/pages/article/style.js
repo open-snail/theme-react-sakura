@@ -327,13 +327,16 @@ export const MainWrapper = styled.div`
         margin-bottom: 15px;
     }
     
-    
     .entry-content .post-password-form {
         text-align: center;
     }
     
     .entry-content a img.alignleft,.entry-content a img.alignright,.entry-content a img.aligncenter {
         cursor: -webkit-zoom-in;
+    }
+    
+    .entry-content img{
+        max-width:100%;
     }
     
     pre{
