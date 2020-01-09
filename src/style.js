@@ -131,4 +131,11 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 15px;
         font-weight: bold;
     }
+    #fireworks{
+        position: fixed; 
+        left: 0px; 
+        top: 0px; 
+        pointer-events: none; 
+        z-index: 999;
+    }
 `;
