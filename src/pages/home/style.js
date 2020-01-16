@@ -181,6 +181,21 @@ export const Focusinfo = styled.div`
     @media (max-width: 768px){
         display: none;
     }
+    .header-tou{
+        img{
+            box-shadow: inset 0 0 10px #000;
+            padding: 5px;
+            opacity: 1;
+            transform: rotate(0);
+            transition: all ease 1s;
+            width: 130px;
+            height: 130px;
+            border-radius: 100%;
+        }
+    }
+    .header-tou img:hover {
+        transform: rotate(360deg);
+    }
     .glitch{
         font-family: 'Ubuntu',sans-serif;
         position: relative;
@@ -341,7 +356,8 @@ export const Focusinfo = styled.div`
         content: "";
         position: absolute;
         top: -30px;
-        left: 15%;
+        left: 50%;
+        margin-left:-15px;
         border-width: 15px;
         border-style: solid;
         border-color: transparent transparent rgba(0,0,0,.5) transparent;

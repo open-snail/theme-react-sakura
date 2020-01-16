@@ -51,3 +51,7 @@ export const getFormatTime = (timestamp) => {
     }
     return tip;
 };
+
+export const getrand = (m, n) => {
+    return Math.floor(Math.random() * (n - m + 1)) + m;
+};

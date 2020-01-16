@@ -2,31 +2,6 @@ import axios from 'axios';
 import * as constants from './constants';
 import {fromJS} from 'immutable';
 
-const setBanner = (data) => ({
-    type: constants.GET_BANNER,
-    data: fromJS(data),
-});
-
-export const getBanner = () => {
-    return (dispatch) => {
-        const bannerList = [
-            {img: require('../../../statics/images/banner-1.png')},
-            {img: require('../../../statics/images/banner-2.png')},
-            {img: require('../../../statics/images/banner-3.png')},
-            {img: require('../../../statics/images/banner-4.png')}
-        ];
-        dispatch(setBanner(bannerList));
-    }
-};
-
-export const changehBanner = () => ({
-    type: constants.CHANGE_BANNER,
-});
-
-export const changeInnerHeight = () => ({
-    type: constants.CHANGE_INNERHEIGHT,
-});
-
 const setFeature = (data) => ({
     type: constants.GET_FEATURE,
     data: fromJS(data),

@@ -1,13 +1,8 @@
-import React, {PureComponent} from "react";
-import {connect} from 'react-redux';
+import React from "react";
 import {Link} from 'react-router-dom';
 import {FeatureWrapper, FeatureTitle} from '../style';
 import {Row, Col} from 'antd';
-import {actionCreators} from "../store";
-
-const getrand = (m, n) => {
-    return Math.floor(Math.random() * (n - m + 1)) + m;
-};
+import {getrand} from "../../../lib/public";
 
 const featureList = (props) => {
     const {featureList, ListImg} = props;
@@ -38,36 +33,16 @@ const featureList = (props) => {
     )
 };
 
-class Feature extends PureComponent {
-    render() {
-        return (
-            <FeatureWrapper>
-                <FeatureTitle>
-                    <h1><i className='iconfont icon-anchor'/><span> START:DASH!!</span></h1>
-                </FeatureTitle>
-                {featureList(this.props)}
-            </FeatureWrapper>
-        )
-    }
-
-    componentDidMount() {
-        this.props.getFeature();
-    }
-}
-
-const mapState = (state) => {
-    return {
-        featureList: state.getIn(['home', 'featureList']),
-        ListImg: state.getIn(['image', 'ListImg'])
-    }
+const Feature =(props)=> {
+    return (
+        <FeatureWrapper>
+            <FeatureTitle>
+                <h1><i className='iconfont icon-anchor'/><span> START:DASH!!</span></h1>
+            </FeatureTitle>
+            {featureList(props)}
+        </FeatureWrapper>
+    )
 };
 
-const mapDispatch = (dispatch) => {
-    return {
-        getFeature() {
-            dispatch(actionCreators.getFeature());
-        }
-    }
-};
 
-export default connect(mapState, mapDispatch)(Feature);
+export default Feature;
