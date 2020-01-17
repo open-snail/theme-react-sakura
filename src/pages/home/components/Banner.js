@@ -4,7 +4,7 @@ import {scrollAnimation} from '../../../lib/auth';
 
 const Banner = (props) => {
     const {banner, innerHeight} = props;
-    const {htmlUrl, weibo, csdn, twitter, facebook, qq, email, introduction} = props.userInfo.toJS();
+    const {htmlUrl, weibo, csdn, twitter, facebook, qq, email, introduction, avatar} = props.userInfo.toJS();
     return (
         <BannerWrapper>
             <div className="waveWrapper waveAnimation">
@@ -23,7 +23,7 @@ const Banner = (props) => {
             </div>
             <Center style={{backgroundImage: banner, height: innerHeight + 'px'}}>
                 {htmlUrl && <Focusinfo>
-                    <h1 className='glitch'>Helloblog!</h1>
+                    <h1 className='glitch' data-text="Helloblog!">Helloblog!</h1>
                     {/*<div className='header-tou'>*/}
                     {/*    <img src={avatar}  alt=''/>*/}
                     {/*</div>*/}
