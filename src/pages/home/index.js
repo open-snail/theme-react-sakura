@@ -25,10 +25,10 @@ class Home extends PureComponent {
 
     render() {
         const {banner, innerHeight} = this.state;
-        const {userInfo, featureList, ListImg} = this.props;
+        const {userInfo, featureList, ListImg, socialList} = this.props;
         return (
             <HomeWrapper>
-                <Banner banner={banner} innerHeight={innerHeight} getBanner={this.getBanner} userInfo={userInfo}/>
+                <Banner banner={banner} innerHeight={innerHeight} getBanner={this.getBanner} userInfo={userInfo} socialList={socialList}/>
                 <MainWrapper id='content'>
                     <Feature featureList={featureList} ListImg={ListImg}/>
                     <ListWrapper/>
@@ -41,6 +41,7 @@ class Home extends PureComponent {
         this.changeInnerHeight();
         this.getBanner();
         this.props.getFeature();
+        this.props.getSocialList()
     }
 
     getBanner() {
@@ -64,7 +65,8 @@ const mapState = (state) => {
     return {
         userInfo: state.getIn(['header', 'userInfo']),
         featureList: state.getIn(['home', 'featureList']),
-        ListImg: state.getIn(['image', 'ListImg'])
+        ListImg: state.getIn(['image', 'ListImg']),
+        socialList: state.getIn(['home', 'socialList']),
     }
 };
 
@@ -72,7 +74,10 @@ const mapDispatch = (dispatch) => {
     return {
         getFeature() {
             dispatch(actionCreators.getFeature());
-        }
+        },
+        getSocialList() {
+            dispatch(actionCreators.getSocialList());
+        },
     }
 };
 

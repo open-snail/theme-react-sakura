@@ -5,6 +5,7 @@ import {scrollAnimation} from '../../../lib/auth';
 const Banner = (props) => {
     const {banner, innerHeight} = props;
     const {htmlUrl, weibo, csdn, twitter, facebook, qq, email, introduction, avatar} = props.userInfo.toJS();
+    const list = this.props.socialList.toJS();
     return (
         <BannerWrapper>
             <div className="waveWrapper waveAnimation">
@@ -42,34 +43,46 @@ const Banner = (props) => {
                                     <img src={require('../../../statics/images/github.png')} alt=""/>
                                 </a>
                             </li>
-                            {csdn && <li>
-                                <a href={csdn} target={'_blank'}>
-                                    <img src={require('../../../statics/images/csdn.png')} alt=""/>
-                                </a></li>
+
+                            {
+                                list.map(item =>{
+                                    return (
+                                        <li>
+                                            <a href={item.url} target={'_blank'}>
+                                                <img src={item.icon} alt=""/>
+                                            </a>
+                                        </li>
+                                    )
+                                })
                             }
-                            {weibo && <li>
-                                <a href={weibo} target={'_blank'}>
-                                    <img src={require('../../../statics/images/sina.png')} alt=""/>
-                                </a></li>
-                            }
-                            {twitter && <li>
-                                <a href={twitter} target={'_blank'}>
-                                    <img src={require('../../../statics/images/twitter.png')} alt=""/>
-                                </a></li>
-                            }
-                            {facebook && <li>
-                                <a href={facebook} target={'_blank'}>
-                                    <img src={require('../../../statics/images/Facebook.png')} alt=""/>
-                                </a></li>
-                            }
-                            {qq && <li>
-                                <a href={`tencent://message/?uin={{${qq}}`} target={'_blank'}>
-                                    <img src={require('../../../statics/images/qq.png')} alt=""/>
-                                </a></li>
-                            }
-                            {email && <li onClick={() => mail_me(email)}>
-                                <img src={require('../../../statics/images/email.svg')} alt=""/></li>
-                            }
+                            {/*{csdn && <li>*/}
+                            {/*    <a href={csdn} target={'_blank'}>*/}
+                            {/*        <img src={require('../../../statics/images/csdn.png')} alt=""/>*/}
+                            {/*    </a></li>*/}
+                            {/*}*/}
+                            {/*{weibo && <li>*/}
+                            {/*    <a href={weibo} target={'_blank'}>*/}
+                            {/*        <img src={require('../../../statics/images/sina.png')} alt=""/>*/}
+                            {/*    </a></li>*/}
+                            {/*}*/}
+                            {/*{twitter && <li>*/}
+                            {/*    <a href={twitter} target={'_blank'}>*/}
+                            {/*        <img src={require('../../../statics/images/twitter.png')} alt=""/>*/}
+                            {/*    </a></li>*/}
+                            {/*}*/}
+                            {/*{facebook && <li>*/}
+                            {/*    <a href={facebook} target={'_blank'}>*/}
+                            {/*        <img src={require('../../../statics/images/Facebook.png')} alt=""/>*/}
+                            {/*    </a></li>*/}
+                            {/*}*/}
+                            {/*{qq && <li>*/}
+                            {/*    <a href={`tencent://message/?uin={{${qq}}`} target={'_blank'}>*/}
+                            {/*        <img src={require('../../../statics/images/qq.png')} alt=""/>*/}
+                            {/*    </a></li>*/}
+                            {/*}*/}
+                            {/*{email && <li onClick={() => mail_me(email)}>*/}
+                            {/*    <img src={require('../../../statics/images/email.svg')} alt=""/></li>*/}
+                            {/*}*/}
                             <li onClick={props.getBanner}>
                                 <img src={require('../../../statics/images/next-b.svg')} alt=""/>
                             </li>

@@ -52,3 +52,16 @@ export const getBlogList = (page, override) => {
     }
 };
 
+export const getSocialList = () => {
+    return (dispatch) => {
+        axios.get('/auth/social/v1/list').then((res) => {
+            if (res.success === 1) {
+                dispatch({
+                    type: constants.GET_SOCIAL_LIST,
+                    data: fromJS(res.models)
+                });
+            }
+        })
+    }
+};
+

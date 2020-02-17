@@ -24,7 +24,8 @@ const defaultState = fromJS({
     ],
     finished: false,
     loading: true,
-    isList: false
+    isList: false,
+    socialList:[]
 });
 
 const setFeature = (state, action) => {
@@ -81,6 +82,10 @@ export default (state = defaultState, action) => {
             return state.set('finished', true);
         case constants.LOADING_TRUE:
             return state.set('loading', true);
+        case constants.GET_SOCIAL_LIST:
+            return state.merge({
+                socialList: action.data
+            });
         default:
             return state;
     }
