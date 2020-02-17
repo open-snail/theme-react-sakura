@@ -1,69 +1,88 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center"><a href="https://github.com/byteblogs168/hello-blog-admin" target="_blank">helloblog-admin</a></h1>
+
+> [Hello Blog](http://helloblog.byteblogs.com/) 是一个前后端分离的博客系统，为了解除开发人员对后端的束缚，真正做到的一个面向接口开发的博客系统。
+------------------------------
+
+## 简介
+> sakura 风格，作者--白小纯（此 README 等待原作者修改中）
+>> API使用 helloblog，后台管理使用 helloblog-admin
+
+## helloblog 地址
+> [官网](http://helloblog.byteblogs.com/) | [社区](https://byteblogs.com) | [QQ 交流群](https://shang.qq.com/wpa/qunwpa?idkey=4f8653da80e632ef86ca1d57ccf8751602940d1036c79b04a3a5bc668adf8864) | 
+
+## 声明
+
+> 本项目，主要宗旨在于，简单、易用、不烧脑的博客，并且基于helloblog，搭建一个属于博主们的博客圈
+>> 后端API <https://github.com/byteblogs168/hello-blog><br>
+>> 后端管理系统 <https://github.com/byteblogs168/hello-blog-admin><br>
+>> 前端主题地址：<https://github.com/byteblogs168/theme-default3/><br>
+## 快速开始
+
+### 克隆项目到本地
+```bash
+clone https://github.com/byteblogs168/theme-default3.git
+```
+
+### 打开 helloblog-admin 代码后进行构建
+```bash
+npm install --registry=https://registry.npm.taobao.org
+```
+### 启动后端管理系统
+```bash
+vue-cli-service serve
+```
+
+详细文档请移步：<http://helloblog.byteblogs.com/docs/>
+
+## 博客示例
+
+请移步： <https://preview.byteblogs.com/>
+
+## 生态圈
+
+- 后端代码（hello-blog）：<https://github.com/byteblogs168/hello-blog>
+- 后端代码（hello-blog）：<https://github.com/byteblogs168/hello-blog-admin>
+- 主题仓库：<https://github.com/byteblogs168/theme-default3>
 
 
-## Available Scripts
+## 使用 helloblog 的优秀博主
+- 青涩知夏：<https://www.nosum.cn/>
+- 踏歌长行：<https://www.bygit.cn/>
 
-In the project directory, you can run:
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 捐赠
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+> 如果 helloblog 对你有帮助，可以请作者喝杯☕️。
 
-### `yarn test`
+| 支付宝  | 微信 |
+| :------------: |  :------------: |
+| <img src="http://image.byteblogs.com/FvM2HsxIesxN41bPJCtRpUi8LQgA" width="200"/>  |  <img src="http://image.byteblogs.com/Fn33krSt1uIm4sgqBE67fkZL2-__" width="200"/>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 预览图
 
-### `yarn build`
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%281%29.png" width="600"/>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%282%29.png" width="600"/>
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%283%29.png" width="600"/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%284%29.png" width="600"/>
 
-### `yarn eject`
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%285%29.png" width="600"/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%286%29.png" width="600"/>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="https://cos.nosum.cn/preview/helloblog-theme/helloblog-theme3-perview%20%287%29.png" width="600"/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="https://cos.nosum.cn/preview/helloblog-admin/helloblog-admin-preview%20%282%29.png" width="600"/>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="https://cos.nosum.cn/preview/helloblog-admin/helloblog-admin-preview%20%283%29.png" width="600"/>
 
-## Learn More
+<img src="https://cos.nosum.cn/preview/helloblog-admin/helloblog-admin-preview%20%284%29.png" width="600"/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="https://cos.nosum.cn/preview/helloblog-admin/helloblog-admin-preview%20%285%29.png" width="600"/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="https://cos.nosum.cn/preview/helloblog-admin/helloblog-admin-preview%20%286%29.png" width="600"/>
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<img src="https://cos.nosum.cn/preview/helloblog-admin/helloblog-admin-preview%20%287%29.png" width="600"/>
