@@ -5,7 +5,7 @@ import {scrollAnimation} from '../../../lib/auth';
 const Banner = (props) => {
     const {banner, innerHeight} = props;
     const {htmlUrl, weibo, csdn, twitter, facebook, qq, email, introduction, avatar} = props.userInfo.toJS();
-    const list = this.props.socialList.toJS();
+    const list = props.socialList.toJS();
     return (
         <BannerWrapper>
             <div className="waveWrapper waveAnimation">
@@ -37,11 +37,6 @@ const Banner = (props) => {
                         <div className='top-social_v2'>
                             <li onClick={props.getBanner}>
                                 <img className='flipx' src={require('../../../statics/images/next-b.svg')} alt=""/>
-                            </li>
-                            <li>
-                                <a href={htmlUrl} target={'_blank'}>
-                                    <img src={require('../../../statics/images/github.png')} alt=""/>
-                                </a>
                             </li>
 
                             {
