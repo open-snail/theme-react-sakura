@@ -43,7 +43,7 @@ const Banner = (props) => {
                                 list.map(item =>{
                                     return (
                                         <li>
-                                            <a href={item.url} target={'_blank'}>
+                                            <a href={item.content} target={'_blank'}>
                                                 <img src={item.icon} alt=""/>
                                             </a>
                                         </li>
