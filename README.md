@@ -15,7 +15,7 @@
 > 本项目，主要宗旨在于，简单、易用、不烧脑的博客，并且基于helloblog，搭建一个属于博主们的博客圈
 >> 后端API <https://github.com/byteblogs168/hello-blog><br>
 >> 后端管理系统 <https://github.com/byteblogs168/hello-blog-admin><br>
->> 前端主题地址：<https://github.com/byteblogs168/theme-default3/><br>
+>> 前端主题地址：<https://github.com/byteblogs168/theme-react-sakura/><br>
 ## 快速开始
 
 ### 克隆项目到本地
@@ -42,7 +42,7 @@ vue-cli-service serve
 
 - 后端代码（hello-blog）：<https://github.com/byteblogs168/hello-blog>
 - 后端代码（hello-blog）：<https://github.com/byteblogs168/hello-blog-admin>
-- 主题仓库：<https://github.com/byteblogs168/theme-default3>
+- 主题仓库：<https://github.com/byteblogs168/theme-react-sakura/><br>
 
 
 ## 使用 helloblog 的优秀博主
