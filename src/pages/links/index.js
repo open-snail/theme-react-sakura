@@ -70,7 +70,7 @@ class Links extends PureComponent {
 
     getLinks() {
         this.setState({loading: true});
-        axios.get('/link/link/v1/list').then((res) => {
+        axios.get('/link/link/v1/list?size=1000').then((res) => {
             if (res.success === 1) {
                 this.setState({
                     list: res.models,
