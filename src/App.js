@@ -37,19 +37,21 @@ class App extends PureComponent {
 
     getMuisic(){
         axios.get('/music/music/v1/list').then((res) => {
-            const options = {
-                container: document.getElementById('player'),
-                fixed: true,
-                theme: '#fe9600',
-                listMaxHeight: '300px',
-                listFolded: false,
-                lrcType: 3,
-                audio:res.models
-            };
-            const ap = new APlayer(options);
-            ap.on('ended', function () {
-                console.log('player ended');
-            });
+            if(res.models.length){
+                const options = {
+                    container: document.getElementById('player'),
+                    fixed: true,
+                    theme: '#fe9600',
+                    listMaxHeight: '300px',
+                    listFolded: false,
+                    lrcType: 3,
+                    audio:res.models
+                };
+                const ap = new APlayer(options);
+                ap.on('ended', function () {
+                    console.log('player ended');
+                });
+            }
         })
     }
 }

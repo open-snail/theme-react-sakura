@@ -5,7 +5,7 @@ export const Top = styled.div`
         position: fixed;
         right: 40px;
         top: -150px;
-        z-index: 99;
+        z-index: 222;
         width: 70px;
         height: 900px;
         transition: all .5s 0.3s ease-in-out;

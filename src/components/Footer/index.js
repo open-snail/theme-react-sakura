@@ -13,7 +13,7 @@ class Footer extends PureComponent {
                         <p className='foo-logo'/>
                         <p className='name'>
                             <span>
-                                <a href={domain} target={'_blank'}>{copyright}</a>
+                                <a href={domain} rel="noopener noreferrer" target={'_blank'}>{copyright}</a>
                             </span>
                         </p>
                         <p>© 2019 {title} {icp}</p>

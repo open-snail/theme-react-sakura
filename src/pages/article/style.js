@@ -394,6 +394,68 @@ export const MainWrapper = styled.div`
     .flex-items{
         align-items: initial;
     }
+    
+    .single-reward{
+        position: relative;
+        width: 100%;
+        margin: 35px auto;
+        text-align: center;
+        z-index: 999;
+        .reward-open {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            padding: 7px;
+            color: #fff;
+            text-align: center;
+            display: inline-block;
+            border-radius: 100%;
+            background: #d34836;
+            cursor: pointer;
+        }
+        .reward-open:hover .reward-main{
+            display: block;
+        }
+        .reward-main{
+            position: absolute;
+            top: 40px;
+            left: -157px;
+            margin: 0;
+            padding: 15px 0 0;
+            width: 355px;
+            background: 0 0;
+            display: none;
+            animation: main .4s;
+        }
+        .reward-row{
+            list-style: disc;
+            border: 1px dashed #e4e4e4;
+            margin: 0 auto;
+            padding: 20px 15px 10px;
+            background: #f5f5f5;
+            display: inline-block;
+            border-radius: 4px;
+            cursor: auto;
+            li{
+                list-style-type: none;
+                padding: 0 12px;
+                display: inline-block;
+                img{
+                    width: 130px;
+                    max-width: 130px;
+                    border-radius: 3px;
+                    position: relative;
+                }
+                p{
+                    color: #666666;
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    
     @media(max-width:768px){
         padding:10px;
         min-height:400px;

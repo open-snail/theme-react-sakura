@@ -381,6 +381,75 @@ export const Focusinfo = styled.div`
         float: left;
         margin:0 6px;
         cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
+        position: relative;
+    }
+    .top-social_v2 li {
+        .img-box{
+            position: absolute;
+            border-radius: 6px;
+            transition: .7s all ease;
+            width: 121px;
+            height: 121px;
+            padding: 4px;
+            background: rgba(0, 0, 0, .4);
+            top: 40px;
+            left: 50%;
+            transform: translate3d(0, 50px, 0) translateX(-50%);
+            opacity: 0;
+            &:before {
+                content: "";
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                margin-left: -15px;
+                border-width: 15px;
+                border-style: solid;
+                border-color: transparent transparent rgba(0, 0, 0, .4) transparent;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .text-box{
+            position: absolute;
+            border-radius: 4px;
+            transition: .7s all ease;
+            background: rgba(0, 0, 0, .4);
+            top: 40px;
+            left: 50%;
+            transform: translate3d(0, 50px, 0) translateX(-50%);
+            opacity: 0;
+            &:before {
+                content: "";
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                margin-left: -15px;
+                border-width: 15px;
+                border-style: solid;
+                border-color: transparent transparent rgba(0, 0, 0, .4) transparent;
+            }
+            p{
+                color: #ffffff;
+                font-weight: normal;
+                font-size: 12px;
+                padding: 2px 5px;
+            }
+        }
+    }
+    .top-social_v2 li:hover .img-box{
+        transform: translate3d(0, 16px, 0) translateX(-50%);
+        opacity: 1;
+        visibility: visible;
+    }
+    .top-social_v2 li:hover .text-box{
+        transform: translate3d(0, 16px, 0) translateX(-50%);
+        opacity: 1;
+        visibility: visible;
+    }
+    .top-social_v2 li:hover .text-box{
+        display:block;
     }
     .top-social_v2 img {
         height: 35px;

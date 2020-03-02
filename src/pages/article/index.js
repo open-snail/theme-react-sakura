@@ -17,12 +17,13 @@ class Article extends PureComponent {
             content: '',
             timg: '',
             id: props.match.params.id,
+            socialsList: [],
             tocify: new Tocify()
         }
     }
 
     render() {
-        const {content} = this.state;
+        const {content, socialsList} = this.state;
         const {name, avatar} = this.props.userInfo.toJS();
         this.state.tocify && this.state.tocify.reset();
         if (content.title) document.title = content.title;
@@ -52,6 +53,7 @@ class Article extends PureComponent {
                                 <div className='entry-content'
                                      dangerouslySetInnerHTML={{__html: marked(content.content)}}
                                 />
+                                {this.setSocials(socialsList)}
                                 <Comments id={this.state.id} isComment={content.isComment}/>
                             </div>
                             {this.state.tocify && this.state.tocify.render()}
@@ -75,6 +77,7 @@ class Article extends PureComponent {
         });
         this.getDetail(this.state.id);
         this.getTimg();
+        this.getSocials();
     }
 
     getTimg() {
@@ -95,6 +98,42 @@ class Article extends PureComponent {
                 this.props.history.push('/404');
             }
         });
+    }
+
+    getSocials(){
+        axios.get('/auth/social/v1/socials?code=reward').then((res) => {
+            if (res.success === 1) {
+                this.setState({
+                    socialsList: res.models
+                })
+            }
+        });
+    }
+
+    setSocials(socialsList){
+        if(socialsList.length){
+            return(
+                <div className='single-reward'>
+                    <div className='reward-open'>
+                        <p>赏</p>
+                        <div className='reward-main'>
+                            <ul className='reward-row'>
+                                {socialsList.map((item,index)=>{
+                                    return(
+                                        <li key={index}>
+                                            <img src={item.content} alt=""/>
+                                            <p>{item.remark}</p>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            )
+        }else {
+            return null
+        }
     }
 
     getrand(m, n) {

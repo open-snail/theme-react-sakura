@@ -2,7 +2,8 @@ import React, {PureComponent} from "react";
 import {connect} from 'react-redux';
 import {LinksWrapper, LinksTop, MainWrapper} from './style';
 import axios from "axios";
-import {Spin} from "antd";
+import {Spin, Anchor} from "antd";
+const {Link} = Anchor;
 
 const LinksList = (props) => {
     const {list, loading} = props;
@@ -14,20 +15,29 @@ const LinksList = (props) => {
         )
     } else {
         return (
-            <div className='links'>
-                {list.length ? <ul className='link-items fontSmooth'>
+            <div className='links cell'>
+                {list.length ? <div className='extra'>
                     {list.map((item, index) => {
                         return (
-                            <li className='link-item post-list-show ' key={index}>
-                                <a href={item.href} target={'_blank'}>
-                                    <img src={item.logo} alt=""/>
-                                    <span className="sitename">{item.name}</span>
-                                    <div className="linkdes">{item.description}</div>
-                                </a>
-                            </li>
+                            <div className='item' key={index}>
+                                <h2 className='link-title' id={`${item.title}`}><span className='fake-title'>{item.title}</span></h2>
+                                <ul className='link-items fontSmooth'>
+                                    {item.list.map((item2, index2) => {
+                                        return (
+                                            <li className='link-item post-list-show ' key={index2}>
+                                                <a href={item2.href} target={'_blank'} rel="noopener noreferrer">
+                                                    <img src={item2.logo} alt=""/>
+                                                    <span className="sitename">{item2.name}</span>
+                                                    <div className="linkdes">{item2.description}</div>
+                                                </a>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
                         )
                     })}
-                </ul> : <p>去找点新朋友玩吧...</p>}
+                </div> : <p>去找点新朋友玩吧...</p>}
             </div>
         )
     }
@@ -57,7 +67,18 @@ class Links extends PureComponent {
                     </div>
                 </LinksTop>
                 <MainWrapper>
-                    <LinksList list={list} loading={loading}/>
+                    <div className='flex-items'>
+                        <LinksList list={list} loading={loading}/>
+                        <div className='toc-box'>
+                            {list.length?<Anchor className='toc' affix showInkInFixed onClick={this.handleClick} offsetTop={100}>
+                                {list.map((item)=>{
+                                    return(
+                                        <Link key={item.title} href={`#${item.title}`} title={item.title}/>
+                                    )
+                                })}
+                            </Anchor>:null}
+                        </div>
+                    </div>
                 </MainWrapper>
             </LinksWrapper>
         )
@@ -68,12 +89,24 @@ class Links extends PureComponent {
         this.getTimg();
     }
 
+    handleClick(e, link) {
+        e.preventDefault();
+    };
+
     getLinks() {
         this.setState({loading: true});
-        axios.get('/link/link/v1/list').then((res) => {
+        axios.get('/link/link/v2/list').then((res) => {
+            let {extra} = res;
+            let arrar = [];
+            for (let i in extra) {
+                arrar.push({
+                    title: i,
+                    list: extra[i]
+                });
+            }
             if (res.success === 1) {
                 this.setState({
-                    list: res.models,
+                    list: arrar,
                     loading: false
                 })
             }

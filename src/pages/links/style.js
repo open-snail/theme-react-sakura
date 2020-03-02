@@ -91,6 +91,20 @@ export const MainWrapper = styled.div`
     padding-top:50px;
     background-color: rgba(255,255,255,.8);
     animation: main 1s;
+    .flex-items{
+        align-items: start;
+    }
+    .toc{
+        .ant-anchor-link-active > .ant-anchor-link-title{
+            color: #FE9600;
+        }
+        .ant-anchor-link-title:hover{
+            color: #FE9600;
+        }
+        .ant-anchor-ink-ball{
+            border: 2px solid #FE9600;
+        }
+    }
     @keyframes main {
         0% {
             opacity: 0;
@@ -117,6 +131,17 @@ export const MainWrapper = styled.div`
         display: inline-block;
         color: #989898;
         font-size: 15px;
+    }
+    .links .link-title {
+        padding-left: 0;
+        border-left: none;
+        margin: 50px 0 20px;
+        .fake-title {
+            font-weight: 400;
+            color: #6d6d6d;
+            padding-left: 10px;
+            border-left: 3px solid orange;
+        }
     }
     .links ul {
         margin: 0;
@@ -235,6 +260,9 @@ export const MainWrapper = styled.div`
     @media(max-width:768px){
         padding-top:30px;
         min-height:400px;
+        .toc-box{
+            display: none;
+        }
         .page-header{
             margin-bottom: 30px;
                 h1{
