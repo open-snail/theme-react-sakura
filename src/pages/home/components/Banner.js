@@ -32,7 +32,7 @@ class Banner extends PureComponent {
                     <span onClick={headertop_down}><i className='iconfont icon-chevrondown'/></span>
                 </div>
                 <Center style={{backgroundImage: banner, height: innerHeight + 'px'}}>
-                    {info.length && <Focusinfo>
+                    <Focusinfo>
                         <h1 className='glitch' data-text="Helloblog!">Helloblog!</h1>
                         {/*<div className='header-tou'>*/}
                         {/*    <img src={avatar}  alt=''/>*/}
@@ -85,7 +85,7 @@ class Banner extends PureComponent {
                                 </li>
                             </div>
                         </div>
-                    </Focusinfo>}
+                    </Focusinfo>
                 </Center>
             </BannerWrapper>
         )
