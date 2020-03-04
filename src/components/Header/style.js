@@ -342,19 +342,20 @@ export const MoNav = styled.div`
         font-size: 13px;
         color: #333;
         position: relative;
+    }
+    .menu{
+        position: relative;
         &:after{
             position: absolute;
             right:0px;
-            bottom: 0;
-            left:0px;
+            top: 0;
+            left: 0px;
             height: 1px;
             content: '';
             -webkit-transform: scaleY(.5);
             transform: scaleY(.5);
             background-color:#f1f1f1;   
         }
-    }
-    .menu{
         .item{
             position: relative;
             padding:10px 15px;

@@ -15,7 +15,9 @@ class Header extends PureComponent {
             isVisible: false,
             value: '',
             open: false,
-            isUser: false
+            isUser: false,
+            menuList: [],
+            loading: false
         };
         this.handleClick = this.handleClick.bind(this);
         this.keypress = this.keypress.bind(this);
@@ -26,7 +28,7 @@ class Header extends PureComponent {
     }
 
     render() {
-        const {isVisible, value, open, isUser} = this.state;
+        const {isVisible, value, open, isUser, menuList, loading} = this.state;
         const {category} = this.props;
         const {title, domain} = this.props.confing.toJS();
         const {name, introduction, avatar} = this.props.userInfo.toJS();
@@ -40,7 +42,7 @@ class Header extends PureComponent {
                             <Icon type="menu" onClick={this.openMonav}/>
                         </NavLeft>
                         <NavRight>
-                            <div className='flex-items'>
+                            {loading ? <div className='flex-items'>
                                 <Nav className='flex-items'>
                                     <NavItem>
                                         <Link to={'/'} className='nav-item'>
@@ -50,7 +52,7 @@ class Header extends PureComponent {
                                     </NavItem>
                                     <NavItem id='area'>
                                         <Dropdown
-                                            overlay={this.Category()}
+                                            overlay={this.setCategory(category.toJS(), true)}
                                             placement="bottomCenter"
                                             getPopupContainer={() => document.getElementById('area')}
                                             overlayClassName='NavDropdown'
@@ -79,13 +81,43 @@ class Header extends PureComponent {
                                             <span>标签墙</span>
                                         </Link>
                                     </NavItem>
+                                    {menuList.map((item, index) => {
+                                        if (item.child && item.child.length > 0) {
+                                            return (
+                                                <NavItem id={'area' + index} key={index}>
+                                                    <Dropdown
+                                                        overlay={this.setCategory(item.child, false)}
+                                                        placement="bottomCenter"
+                                                        getPopupContainer={() => document.getElementById('area' + index)}
+                                                        overlayClassName='NavDropdown'
+                                                    >
+                                                        <a href={item.url} target={'_blank'} rel="noopener noreferrer"
+                                                           className='nav-item'>
+                                                            <Icon type={item.icon}/>
+                                                            <span>{item.title}</span>
+                                                        </a>
+                                                    </Dropdown>
+                                                </NavItem>
+                                            )
+                                        } else {
+                                            return (
+                                                <NavItem key={index}>
+                                                    <a href={item.url} target={'_blank'} rel="noopener noreferrer"
+                                                       className='nav-item'>
+                                                        <Icon type={item.icon}/>
+                                                        <span>{item.title}</span>
+                                                    </a>
+                                                </NavItem>
+                                            )
+                                        }
+                                    })}
                                 </Nav>
                                 <IconBox className='flex-items'>
                                     <Icon type="search" onClick={this.handleClick}/>
-                                    {isUser || getAvatar()? <img src={getAvatar()} alt=""/> :
+                                    {isUser || getAvatar() ? <img src={getAvatar()} alt=""/> :
                                         <Icon type="user" onClick={this.login}/>}
                                 </IconBox>
-                            </div>
+                            </div> : null}
                         </NavRight>
                     </NavWrapper>
                 </Affix>
@@ -155,6 +187,41 @@ class Header extends PureComponent {
                                 <span>标签墙</span>
                             </Link>
                         </li>
+                        {menuList.map((item, index) => {
+                            if (item.child && item.child.length > 0) {
+                                return (
+                                    <li key={index}>
+                                        <a href={item.url} target={'_blank'} rel="noopener noreferrer"
+                                           className='item flex-items'>
+                                            <Icon type={item.icon}/>
+                                            <span>{item.title}</span>
+                                        </a>
+                                        <ul className='sub-menu'>
+                                            {item.child.map((item, index) => {
+                                                return (
+                                                    <li key={index}>
+                                                        <a href={item.url} target={'_blank'} rel="noopener noreferrer"
+                                                           className='item flex-items'>
+                                                            <span>{item.title}</span>
+                                                        </a>
+                                                    </li>
+                                                )
+                                            })}
+                                        </ul>
+                                    </li>
+                                )
+                            } else {
+                                return (
+                                    <li key={index}>
+                                        <a href={item.url} target={'_blank'} rel="noopener noreferrer"
+                                           className='item flex-items'>
+                                            <Icon type={item.icon}/>
+                                            <span>{item.title}</span>
+                                        </a>
+                                    </li>
+                                )
+                            }
+                        })}
                     </ul>
                 </MoNav>
             </Headers>
@@ -165,6 +232,27 @@ class Header extends PureComponent {
         this.props.getCategory();
         this.props.getUser();
         this.props.getConfing();
+        this.getMenu();
+    }
+
+    getMenu() {
+        this.setState({loading: false});
+        axios.get('/menu/front/v1/list', {
+            params: {
+                page: 1,
+                size: 10
+            }
+        }).then((res) => {
+            if (res.success === 1) {
+                let Time = setTimeout(() => {
+                    this.setState({
+                        menuList: res.models,
+                        loading: true
+                    });
+                    clearTimeout(Time);
+                }, 10)
+            }
+        });
     }
 
     keypress(e) {
@@ -218,9 +306,18 @@ class Header extends PureComponent {
     }
 
     openMonav() {
-        this.setState((prevState) => ({
-            open: !prevState.open
-        }))
+        this.setState((prevState) => {
+            if (!prevState.open) {
+                document.body.style.height = '100%';
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.height = '';
+                document.body.style.overflow = '';
+            }
+            return {
+                open: !prevState.open
+            }
+        })
     }
 
     handleClick() {
@@ -229,24 +326,33 @@ class Header extends PureComponent {
         }))
     }
 
-    Category() {
-        const {category} = this.props;
-        const list = category.toJS();
-        return (
-            <Menu>
-                {
-                    list.map((item, index) => {
+    setCategory(list, isCategory) {
+        if (isCategory) {
+            return (
+                <Menu>
+                    {list.map((item, index) => {
                         return (
                             <Menu.Item key={index}>
                                 <Link to={'/category/' + item.id}>{item.name}</Link>
                             </Menu.Item>
                         )
-                    })
-                }
-            </Menu>
-        )
+                    })}
+                </Menu>
+            )
+        } else {
+            return (
+                <Menu>
+                    {list.map((item, index) => {
+                        return (
+                            <Menu.Item key={index}>
+                                <a href={item.url} target={'_blank'} rel="noopener noreferrer">{item.title}</a>
+                            </Menu.Item>
+                        )
+                    })}
+                </Menu>
+            )
+        }
     }
-
 }
 
 const mapStateToProps = (state) => {
