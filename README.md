@@ -13,9 +13,9 @@
 ## 声明
  
 >  本项目，主要宗旨在于，简单、易用、不烧脑的博客，并且基于helloblog，搭建一个属于博主们的博客圈
->> 后端API: [https://github.com/byteblogs168/hello-blog](https://github.com/byteblogs168/hello-blog)
->> 后端管理系统: [https://github.com/byteblogs168/hello-blog-admin](https://github.com/byteblogs168/hello-blog-admin)
->> 前端主题地址: [https://github.com/byteblogs168/theme-react-sakura/](https://github.com/byteblogs168/theme-react-sakura/)
+>> 后端API: [https://github.com/byteblogs168/hello-blog](https://github.com/byteblogs168/hello-blog)<br/>
+>> 后端管理系统: [https://github.com/byteblogs168/hello-blog-admin](https://github.com/byteblogs168/hello-blog-admin)<br/>
+>> 前端主题地址: [https://github.com/byteblogs168/theme-react-sakura/](https://github.com/byteblogs168/theme-react-sakura/)<br/>
 
 ## 快速开始
 
@@ -26,6 +26,8 @@ clone https://github.com/byteblogs168/theme-react-sakura.git
 ```
 ### 打开 helloblog-sakura 代码后进行构建
 
+npm 使用 yarn
+ 
 ```language
 yarn install 
 ```
@@ -35,6 +37,10 @@ yarn install
 ```language
 yarn run start
 ```
+## 本地调试设置代理
+
+在 package.json 中 proxy 字段
+
 ## 打包项目
 
 ```language
