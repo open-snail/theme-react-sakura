@@ -22,7 +22,7 @@
 ### 克隆项目到本地
 
 ```language
-clone https://github.com/by05021/theme-react-sakura.git
+clone https://github.com/byteblogs168/theme-react-sakura.git
 ```
 ### 打开 helloblog-sakura 代码后进行构建
 
