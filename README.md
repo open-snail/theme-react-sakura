@@ -54,10 +54,10 @@ yarn run build
 ## 使用说明
 
 主题使用说明见：[https://www.bygit.cn/article/40](https://www.bygit.cn/article/40)
-![sakura 1.png](http://image.bygit.cn/FveLhPhpgZbLHNwKBBOAmwB8rgEx)
+![sakura 1.png](https://image.bygit.cn/helloblog/image/23acc9a8-2b2a-4fa1-997b-0c14f46458b7.png)
 
 ## 打赏支持
 微信
-![WechatIMG75.jpeg](http://image.bygit.cn/FoS6kBQ5Is3x0SDTWPVPTsM8FhsC)
+![WechatIMG75.jpeg](https://image.bygit.cn/FoS6kBQ5Is3x0SDTWPVPTsM8FhsC)
 支付宝
-![WechatIMG76.jpeg](http://image.bygit.cn/FiC6zd7pik1To9fdntZUEEFT_RvI)
+![WechatIMG76.jpeg](https://image.bygit.cn/helloblog/image/95f755c9-4289-4c76-bac1-9e30ae6424e6.jpeg)
