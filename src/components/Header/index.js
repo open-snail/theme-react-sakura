@@ -93,7 +93,7 @@ class Header extends PureComponent {
                                                     >
                                                         <a href={item.url} target={'_blank'} rel="noopener noreferrer"
                                                            className='nav-item'>
-                                                            <Icon type={item.icon}/>
+                                                            <Icon type={item.icon} theme="filled"/>
                                                             <span>{item.title}</span>
                                                         </a>
                                                     </Dropdown>
@@ -104,7 +104,7 @@ class Header extends PureComponent {
                                                 <NavItem key={index}>
                                                     <a href={item.url} target={'_blank'} rel="noopener noreferrer"
                                                        className='nav-item'>
-                                                        <Icon type={item.icon}/>
+                                                        <Icon type={item.icon} theme="filled"/>
                                                         <span>{item.title}</span>
                                                     </a>
                                                 </NavItem>
@@ -193,7 +193,7 @@ class Header extends PureComponent {
                                     <li key={index}>
                                         <a href={item.url} target={'_blank'} rel="noopener noreferrer"
                                            className='item flex-items'>
-                                            <Icon type={item.icon}/>
+                                            <Icon type={item.icon} theme="filled"/>
                                             <span>{item.title}</span>
                                         </a>
                                         <ul className='sub-menu'>
@@ -215,7 +215,7 @@ class Header extends PureComponent {
                                     <li key={index}>
                                         <a href={item.url} target={'_blank'} rel="noopener noreferrer"
                                            className='item flex-items'>
-                                            <Icon type={item.icon}/>
+                                            <Icon type={item.icon} theme="filled"/>
                                             <span>{item.title}</span>
                                         </a>
                                     </li>

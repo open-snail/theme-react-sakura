@@ -13,10 +13,10 @@ class Home extends PureComponent {
         this.state = {
             banner: '',
             bannerList: [
-                {img: 'http://image.bygit.cn/banner-1.png'},
-                {img: 'http://image.bygit.cn/banner-2.png'},
-                {img: 'http://image.bygit.cn/banner-3.png'},
-                {img: 'http://image.bygit.cn/banner-4.png'}
+                {img: 'https://image.bygit.cn/banner-1.png'},
+                {img: 'https://image.bygit.cn/banner-2.png'},
+                {img: 'https://image.bygit.cn/banner-3.png'},
+                {img: 'https://image.bygit.cn/banner-4.png'}
             ],
             innerHeight: window.innerHeight,
         };
