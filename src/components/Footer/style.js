@@ -25,6 +25,9 @@ export const Footers = styled.footer`
         }
         p{
             margin:15px 0;
+            a{
+                color: #b9b9b9;
+            }
         }
         .name{
             span{

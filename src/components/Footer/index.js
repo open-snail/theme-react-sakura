@@ -16,7 +16,7 @@ class Footer extends PureComponent {
                                 <a href={domain} rel="noopener noreferrer" target={'_blank'}>{copyright}</a>
                             </span>
                         </p>
-                        <p>© 2019 {title} {icp}</p>
+                        <p>© 2020 {title} <a href="http://www.beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">{icp}</a></p>
                     </div>
                 </div>
             </Footers>
