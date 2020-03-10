@@ -151,7 +151,7 @@ class Article extends PureComponent {
 
 const mapState = (state) => {
     return {
-        topImg: state.getIn(['image', 'topImg']),
+        topImg: state.getIn(['image', 'bannerList']),
         userInfo: state.getIn(['header', 'userInfo']),
     }
 };

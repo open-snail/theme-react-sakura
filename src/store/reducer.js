@@ -4,13 +4,6 @@ import {reducer as homeReducer} from '../pages/home/store';
 
 const image = () => {
     return {
-        //内页顶部头图
-        topImg: [
-            {img: 'https://image.bygit.cn/timg-1.png'},
-            {img: 'https://image.bygit.cn/timg-2.png'},
-            {img: 'https://image.bygit.cn/timg-3.png'},
-            {img: 'https://image.bygit.cn/timg-4.png'}
-        ],
         //列表页随机封面图
         ListImg: [
             {img: 'https://image.bygit.cn/list_01.png'},
@@ -28,7 +21,7 @@ const image = () => {
             {img: 'https://image.bygit.cn/list_13.png'},
             {img: 'https://image.bygit.cn/list_14.png'}
         ],
-        //首页banner图
+        //首页banner图和内页顶部头图
         bannerList: [
             {img: 'https://image.bygit.cn/banner-1.png'},
             {img: 'https://image.bygit.cn/banner-2.png'},

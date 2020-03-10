@@ -121,7 +121,7 @@ class Category extends PureComponent {
 const mapState = (state) => {
     return {
         category: state.getIn(['header', 'category']),
-        topImg: state.getIn(['image', 'topImg']),
+        topImg: state.getIn(['image', 'bannerList']),
         ListImg: state.getIn(['image', 'ListImg']),
     }
 };

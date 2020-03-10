@@ -89,7 +89,7 @@ class Tags extends PureComponent {
 
 const mapState = (state) => {
     return {
-        topImg: state.getIn(['image', 'topImg'])
+        topImg: state.getIn(['image', 'bannerList'])
     }
 };
 
