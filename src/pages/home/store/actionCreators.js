@@ -21,34 +21,3 @@ export const getFeature = () => {
         });
     }
 };
-
-const setBlogList = (data, nextPage, override) => ({
-    type: constants.GET_BLOGLIST,
-    data: fromJS(data),
-    nextPage,
-    override
-});
-
-const setfinished = () => ({
-    type: constants.SET_FINISHED,
-});
-
-export const getBlogList = (page, override) => {
-    return (dispatch) => {
-        dispatch({type: constants.LOADING_TRUE});
-        axios.get('/posts/posts/v1/list', {
-            params: {
-                page: page,
-                size: 10
-            }
-        }).then(function (res) {
-            if (res.success === 1) {
-                let current = res.pageInfo.page * res.pageInfo.size;
-                let total = res.pageInfo.total;
-                dispatch(setBlogList(res.models, page + 1, override));
-                if (current > total) dispatch(setfinished());
-            }
-        });
-    }
-};
-

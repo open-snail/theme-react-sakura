@@ -12,12 +12,6 @@ class Home extends PureComponent {
         super(props);
         this.state = {
             banner: '',
-            bannerList: [
-                {img: 'https://image.bygit.cn/banner-1.png'},
-                {img: 'https://image.bygit.cn/banner-2.png'},
-                {img: 'https://image.bygit.cn/banner-3.png'},
-                {img: 'https://image.bygit.cn/banner-4.png'}
-            ],
             innerHeight: window.innerHeight,
         };
         this.getBanner = this.getBanner.bind(this);
@@ -44,7 +38,7 @@ class Home extends PureComponent {
     }
 
     getBanner() {
-        const banner = this.state.bannerList;
+        const banner = this.props.bannerList;
         const num = getrand(0, banner.length - 1);
         this.setState({
             banner: `url('${banner[num].img}')`
@@ -64,7 +58,8 @@ const mapState = (state) => {
     return {
         userInfo: state.getIn(['header', 'userInfo']),
         featureList: state.getIn(['home', 'featureList']),
-        ListImg: state.getIn(['image', 'ListImg'])
+        ListImg: state.getIn(['image', 'ListImg']),
+        bannerList: state.getIn(['image', 'bannerList'])
     }
 };
 
