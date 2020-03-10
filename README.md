@@ -26,8 +26,9 @@ clone https://github.com/byteblogs168/theme-react-sakura.git
 ```
 ### 打开 helloblog-sakura 代码后进行构建
 
-npm 使用 yarn
- 
+使用 yarn
+
+### 项目初始化
 ```language
 yarn install 
 ```
@@ -39,7 +40,9 @@ yarn run start
 ```
 ## 本地调试设置代理
 
-在 package.json 中 proxy 字段
+在 package.json 中 proxy 字段 只需设置域名和端口就行<br/>
+
+在 /src/lib/axios.js 中 设置请求前缀
 
 ## 打包项目
 
@@ -54,10 +57,11 @@ yarn run build
 ## 使用说明
 
 主题使用说明见：[https://www.bygit.cn/article/40](https://www.bygit.cn/article/40)
-![sakura 1.png](https://image.bygit.cn/helloblog/image/23acc9a8-2b2a-4fa1-997b-0c14f46458b7.png)
+
+![sakura 1.png](https://image.bygit.cn/helloblog/image/sakura.png)
 
 ## 打赏支持
 微信
 ![WechatIMG75.jpeg](https://image.bygit.cn/FoS6kBQ5Is3x0SDTWPVPTsM8FhsC)
 支付宝
-![WechatIMG76.jpeg](https://image.bygit.cn/helloblog/image/95f755c9-4289-4c76-bac1-9e30ae6424e6.jpeg)
+![WechatIMG76.jpeg](https://image.bygit.cn/helloblog/image/95f755c9-4289-4c76-bac1-9e30ae6424e6.png)
