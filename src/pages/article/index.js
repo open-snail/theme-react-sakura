@@ -94,13 +94,13 @@ class Article extends PureComponent {
                 this.setState({
                     content: res.model
                 })
-            }else {
+            } else {
                 this.props.history.push('/404');
             }
         });
     }
 
-    getSocials(){
+    getSocials() {
         axios.get('/auth/social/v1/socials?code=reward').then((res) => {
             if (res.success === 1) {
                 this.setState({
@@ -110,16 +110,16 @@ class Article extends PureComponent {
         });
     }
 
-    setSocials(socialsList){
-        if(socialsList.length){
-            return(
+    setSocials(socialsList) {
+        if (socialsList.length > 0) {
+            return (
                 <div className='single-reward'>
                     <div className='reward-open'>
                         <p>赏</p>
                         <div className='reward-main'>
                             <ul className='reward-row'>
-                                {socialsList.map((item,index)=>{
-                                    return(
+                                {socialsList.map((item, index) => {
+                                    return (
                                         <li key={index}>
                                             <img src={item.content} alt=""/>
                                             <p>{item.remark}</p>
@@ -131,7 +131,7 @@ class Article extends PureComponent {
                     </div>
                 </div>
             )
-        }else {
+        } else {
             return null
         }
     }

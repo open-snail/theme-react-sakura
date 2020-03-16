@@ -400,7 +400,7 @@ export const MainWrapper = styled.div`
         width: 100%;
         margin: 35px auto;
         text-align: center;
-        z-index: 999;
+        z-index: 99;
         .reward-open {
             position: relative;
             width: 40px;
