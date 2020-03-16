@@ -62,6 +62,6 @@ yarn run build
 
 ## 打赏支持
 微信
-![WechatIMG75.jpeg](https://image.bygit.cn/FoS6kBQ5Is3x0SDTWPVPTsM8FhsC)
+![WechatIMG75.jpeg](https://image.bygit.cn/wxewm.png)
 支付宝
 ![WechatIMG76.jpeg](https://image.bygit.cn/helloblog/image/95f755c9-4289-4c76-bac1-9e30ae6424e6.png)
