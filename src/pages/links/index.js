@@ -16,7 +16,7 @@ const LinksList = (props) => {
     } else {
         return (
             <div className='links cell'>
-                {list.length ? <div className='extra'>
+                {list.length > 0 ? <div className='extra'>
                     {list.map((item, index) => {
                         return (
                             <div className='item' key={index}>
@@ -70,13 +70,13 @@ class Links extends PureComponent {
                     <div className='flex-items'>
                         <LinksList list={list} loading={loading}/>
                         <div className='toc-box'>
-                            {list.length?<Anchor className='toc' affix showInkInFixed onClick={this.handleClick} offsetTop={100}>
+                            {list.length > 0 && <Anchor className='toc' affix showInkInFixed onClick={this.handleClick} offsetTop={100}>
                                 {list.map((item)=>{
                                     return(
                                         <Link key={item.title} href={`#${item.title}`} title={item.title}/>
                                     )
                                 })}
-                            </Anchor>:null}
+                            </Anchor>}
                         </div>
                     </div>
                 </MainWrapper>

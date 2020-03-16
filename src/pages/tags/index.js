@@ -17,7 +17,7 @@ const TagsList = (props) => {
     } else {
         return (
             <div className='tags-list'>
-                {list.length?list.map((item, index) => {
+                {list.length > 0 ?list.map((item, index) => {
                     return (
                         <Tag color={color[getrand(0, color.length - 1)]} key={index}>
                             <Link to={'/tags/' + item.id}>{item.name}({item.postsTotal})</Link>

@@ -37,7 +37,7 @@ class App extends PureComponent {
 
     getMuisic(){
         axios.get('/music/music/v1/list').then((res) => {
-            if(res.models.length){
+            if(res.models.length > 0){
                 const options = {
                     container: document.getElementById('player'),
                     fixed: true,

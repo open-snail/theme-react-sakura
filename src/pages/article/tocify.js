@@ -65,7 +65,7 @@ export default class Tocify {
     }
 
     render() {
-        if (this.tocItems.length) {
+        if (this.tocItems.length > 0) {
             return (
                 <Anchor className='toc' affix showInkInFixed onClick={handleClick} offsetTop={100}>
                     <h3>文章目录</h3>
