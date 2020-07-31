@@ -9,8 +9,11 @@ import {Spin} from 'antd';
 import Tocify from './tocify';
 import Comments from './components/Comments';
 import axios from "axios";
+import Carousel, {Modal, ModalGateway} from 'react-images';
 
 class Article extends PureComponent {
+    tocify = new Tocify();
+
     constructor(props) {
         super(props);
         this.state = {
@@ -18,21 +21,35 @@ class Article extends PureComponent {
             timg: '',
             id: props.match.params.id,
             socialsList: [],
-            tocify: new Tocify()
+            imgList: [],
+            modalIsOpen: false,
+            currentImage: 0
         }
     }
 
     render() {
-        const {content, socialsList} = this.state;
+        const {content, socialsList, id, timg, imgList, modalIsOpen, currentImage} = this.state;
         const {name, avatar} = this.props.userInfo.toJS();
-        this.state.tocify && this.state.tocify.reset();
+        this.tocify && this.tocify.reset();
         if (content.title) document.title = content.title;
+        const styleInit = {
+            header: (base, state) => ({ //头部样式
+                position: 'absolute',
+                top: 90,
+                right: 90,
+                zIndex: 9999,
+            }),
+            view: (base, state) => ({
+                textAlign: 'center',
+                height: state.isFullscreen ? '100%' : 600  //当点击全屏的时候图片样式
+            })
+        };
         return (
             <ArticleWrapper>
                 <div className='pattern-center-blank'/>
                 <ArticleTop>
                     <div className='pattern-attachment-img'>
-                        <img className='lazyload' src={content && (content.thumbnail || this.state.timg)} alt=""/>
+                        <img className='lazyload' src={content && (content.thumbnail || timg)} alt=""/>
                     </div>
                     <div className='single-header'>
                         <h1 className='entry-title'>{content.title}</h1>
@@ -51,15 +68,23 @@ class Article extends PureComponent {
                         <div className='flex-items'>
                             <div className='cell'>
                                 <div className='entry-content'
+                                     id='content'
                                      dangerouslySetInnerHTML={{__html: marked(content.content)}}
                                 />
                                 {this.setSocials(socialsList)}
-                                <Comments id={this.state.id} isComment={content.isComment}/>
+                                <Comments id={id} isComment={content.isComment}/>
                             </div>
-                            {this.state.tocify && this.state.tocify.render()}
+                            {this.tocify && this.tocify.render()}
                         </div> : this.Spin()
                     }
                 </MainWrapper>
+                <ModalGateway>
+                    {modalIsOpen ? (
+                        <Modal onClose={this.toggleModal}>
+                            <Carousel views={imgList} styles={styleInit} currentIndex={currentImage}/>
+                        </Modal>
+                    ) : null}
+                </ModalGateway>
             </ArticleWrapper>
         )
     }
@@ -68,16 +93,31 @@ class Article extends PureComponent {
     componentDidMount() {
         const renderer = new marked.Renderer();
         renderer.heading = (text, level) => {
-            const anchor = this.state.tocify.add(text, level);
+            const anchor = this.tocify.add(text, level);
             return `<h${level} id="${anchor}">${text}</h${level}>`;
         };
         marked.setOptions({
             renderer: renderer,
             highlight: code => hljs.highlightAuto(code).value
         });
-        this.getDetail(this.state.id);
+        this.getDetail(this.props.match.params.id);
         this.getTimg();
         this.getSocials();
+    }
+
+    toggleModal = () => {
+        this.setState({
+            currentImage: 0,
+            modalIsOpen: false
+        })
+    };
+
+    // 打开图片预览
+    openImg(index) {
+        this.setState({
+            currentImage: index,
+            modalIsOpen: true
+        })
     }
 
     getTimg() {
@@ -93,7 +133,24 @@ class Article extends PureComponent {
             if (res.success === 1) {
                 this.setState({
                     content: res.model
-                })
+                }, () => {
+                    const content = document.getElementById('content');
+                    const img = content.getElementsByTagName('img');
+                    let arr = [];
+                    for (let i = 0; i < img.length; i++) {
+                        const src = img[i].src;
+                        arr.push({
+                            source: src
+                        });
+                        img[i].onclick = () => {
+                            this.openImg(i);
+                        }
+                    }
+                    this.setState({
+                        imgList: arr
+                    })
+                });
+
             } else {
                 this.props.history.push('/404');
             }

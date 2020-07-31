@@ -600,10 +600,9 @@ export const CommentsWrapper = styled.div`
 `;
 
 export const CommentTextarea = styled.div`
-     position: relative
+     position: relative;
      .commentbody{
         width:100%;
-        background: #fff;
         padding: 21px 21px 20px;
         font-size: 14px;
         display: block;
@@ -611,11 +610,8 @@ export const CommentTextarea = styled.div`
         margin-bottom: 10px;
         color: #535a63;
         border: 1px solid #ddd;
-        background-color: transparent;
-        background-image: url(https://view.moezx.cc/images/2018/03/24/comment-bg.png);
         background-size: contain;
-        background-repeat: no-repeat;
-        background-position: right;
+        background: #fff url(https://view.moezx.cc/images/2018/03/24/comment-bg.png) no-repeat right;
         resize: vertical;
         border-radius: 6px;
         outline:none;
@@ -645,8 +641,7 @@ export const CommentTextarea = styled.div`
             cursor: url(${require('../../statics/images/ayuda.cur')}),auto;
         }
         input:hover{
-            border: 1px solid #fe9600;
-            border-color: #FE9600;
+            border: 1px solid #FE9600;
             color: #FE9600;
         }
     }
