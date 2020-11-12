@@ -56,7 +56,7 @@ yarn run build
 
 ## 使用说明
 
-主题使用说明见：[https://www.bygit.cn/article/40](https://www.bygit.cn/article/40)
+主题使用说明见：[https://bygit.cn/archives/91](https://bygit.cn/archives/91)
 
 ![sakura 1.png](https://image.bygit.cn/helloblog/image/sakura.png)
 
