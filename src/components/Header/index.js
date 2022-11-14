@@ -285,7 +285,7 @@ class Header extends PureComponent {
                 data: {
                     socialId: socialId,
                     avatar: avatar,
-                    name: name,
+                    nickname: name,
                     htmlUrl: htmlUrl
                 }
             }).then((res) => {

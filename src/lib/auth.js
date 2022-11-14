@@ -34,7 +34,7 @@ export function loginGithubHandel(e) {
             data: {
                 socialId: socialId,
                 avatar: avatar,
-                name: name,
+                nickname: name,
                 htmlUrl: htmlUrl
             }
         }).then((res) => {
